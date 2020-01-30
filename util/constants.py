@@ -1,7 +1,7 @@
 from os import path, name
 from typing import Union
 
-from util.file_manager import FileManager
+from util.file_manager import ReadJSON, ReadType
 
 if name.lower() == "nt":
     CLEAR: str = "cls"
@@ -15,4 +15,7 @@ DATA_PATH: Union[bytes, str] = path.join(path.dirname(__file__), '..', "data")
 SUPPLY: str = "supply"
 DEMAND: str = "demand"
 
-# TODO Read data.json and assign variables
+gameData: ReadType = ReadJSON(f"{DATA_PATH}/data.json")
+SUPPLIES = gameData["supplies"]
+CITIES = gameData["cities"]
+TRAINS = gameData["trains"]
