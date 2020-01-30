@@ -1,0 +1,259 @@
+{
+  "supplies": [
+    {
+      "name": "passengers",
+      "value": 10,
+      "weight": 1
+    },
+    {
+      "name": "grain",
+      "value": 24,
+      "weight": 2
+    },
+    {
+      "name": "corn",
+      "value": 26,
+      "weight": 2
+    },
+    {
+      "name": "textiles",
+      "value": 20,
+      "weight": 2
+    },
+    {
+      "name": "fish",
+      "value": 18,
+      "weight": 2
+    },
+    {
+      "name": "beer",
+      "value": 20,
+      "weight": 2
+    },
+    {
+      "name": "paper",
+      "value": 18,
+      "weight": 2
+    },
+    {
+      "name": "ore",
+      "value": 45,
+      "weight": 4
+    },
+    {
+      "name": "coal",
+      "value": 50,
+      "weight": 4
+    },
+    {
+      "name": "steel",
+      "value": 95,
+      "weight": 8
+    },
+    {
+      "name": "cars",
+      "value": 110,
+      "weight": 8
+    },
+    {
+      "name": "arms",
+      "value": 65,
+      "weight": 4
+    },
+    {
+      "name": "medicine",
+      "value": 65,
+      "weight": 4
+    },
+    {
+      "name": "technology",
+      "value": 75,
+      "weight": 4
+    },
+    {
+      "name": "luxury_goods",
+      "value": 40,
+      "weight": 2
+    },
+    {
+      "name": "government_contract",
+      "value": 50,
+      "weight": 2
+    }
+  ],
+  "cities": [
+    {
+      "name": "carlisle",
+      "phi": 54.88,
+      "gamma": -2.93,
+      "size": 1,
+      "supply": ["passengers", "corn", "textiles"],
+      "demand": ["passengers", "fish", "paper"]
+    },
+    {
+      "name": "whitby",
+      "phi": 54.4863,
+      "gamma": 0.6133,
+      "size": 1,
+      "supply": ["passengers", "fish", "beer"],
+      "demand": ["passengers", "grain", "coal"]
+    },
+    {
+      "name": "dover",
+      "phi": 51.1337,
+      "gamma": 1.3,
+      "size": 2,
+      "supply": ["passengers", "fish", "paper"],
+      "demand": ["passengers", "corn", "beer"]
+    },
+    {
+      "name": "exeter",
+      "phi": 50.7004,
+      "gamma": -3.53,
+      "size": 2,
+      "supply": ["passengers", "fish", "corn"],
+      "demand": ["passengers", "grain", "textiles"]
+    },
+    {
+      "name": "derby",
+      "phi": 52.9333,
+      "gamma": -1.5,
+      "size": 2,
+      "supply": ["passengers", "textiles", "ore"],
+      "demand": ["passengers", "fish", "beer"]
+    },
+    {
+      "name": "norwich",
+      "phi": 52.6304,
+      "gamma": 1.3,
+      "size": 2,
+      "supply": ["passengers", "beer", "coal"],
+      "demand": ["passengers", "textiles", "fish"]
+    },
+    {
+      "name": "oxford",
+      "phi": 51.7704,
+      "gamma": -1.25,
+      "size": 2,
+      "supply": ["passengers", "steel", "technology"],
+      "demand": ["passengers", "ore", "coal"]
+    },
+    {
+      "name": "cambridge",
+      "phi": 52.2004,
+      "gamma": 0.1166,
+      "size": 2,
+      "supply": ["passengers", "technology", "paper"],
+      "demand": ["passengers", "medicine", "luxury_goods"]
+    },
+    {
+      "name": "newcastle",
+      "phi": 55.0004,
+      "gamma": -1.6,
+      "size": 3,
+      "supply": ["passengers", "steel", "fish"],
+      "demand": ["passengers", "ore", "technology"]
+    },
+    {
+      "name": "york",
+      "phi": 53.9704,
+      "gamma": -1.08,
+      "size": 3,
+      "supply": ["passengers", "grain", "corn"],
+      "demand": ["passengers", "medicine", "technology"]
+    },
+    {
+      "name": "nottingham",
+      "phi": 52.9703,
+      "gamma": -1.17,
+      "size": 3,
+      "supply": ["passengers", "cars", "beer"],
+      "demand": ["passengers", "steel", "fish"]
+    },
+    {
+      "name": "bighton",
+      "phi": 50.8303,
+      "gamma": -0.17,
+      "size": 3,
+      "supply": ["passengers", "textiles", "beer"],
+      "demand": ["passengers", "luxury_goods", "fish"]
+    },
+    {
+      "name": "southampton",
+      "phi": 50.9,
+      "gamma": -1.4,
+      "size": 3,
+      "supply": ["passengers", "grain", "corn", "textiles"],
+      "demand": ["passengers", "fish", "medicine", "government_contract"]
+    },
+    {
+      "name": "plymouth",
+      "phi": 50.3854,
+      "gamma": -4.16,
+      "size": 3,
+      "supply": ["passengers", "coal", "steel"],
+      "demand": ["passengers", "government_contract", "beer", "corn"]
+    },
+    {
+      "name": "leicester",
+      "phi": 52.63,
+      "gamma": -1.1332,
+      "size": 4,
+      "supply": ["passengers", "coal", "ore"],
+      "demand": ["passengers", "government_contract", "medicine"]
+    },
+    {
+      "name": "bristol",
+      "phi": 51.45,
+      "gamma": -2.5833,
+      "size": 4,
+      "supply": ["passengers", "paper", "arms"],
+      "demand": ["passengers", "steel", "ore", "grain"]
+    },
+    {
+      "name": "leeds",
+      "phi": 53.83,
+      "gamma": -1.58,
+      "size": 4,
+      "supply": ["passengers", "paper", "medicine"],
+      "demand": ["passengers", "textiles", "fish"]
+    },
+    {
+      "name": "manchester",
+      "phi": 53.5004,
+      "gamma": -2.248,
+      "size": 5,
+      "supply": ["passengers", "technology", "textiles"],
+      "demand": ["passengers", "luxury_goods", "paper"]
+    },
+    {
+      "name": "liverpool",
+      "phi": 53.416,
+      "gamma": -2.918,
+      "size": 5,
+      "supply": ["passengers", "fish", "luxury_goods"],
+      "demand": ["passengers", "medicine", "technology", "arms"]
+    },
+    {
+      "name": "birmingham",
+      "phi": 52.475,
+      "gamma": -1.92,
+      "size": 5,
+      "supply": ["passengers", "government_contract", "medicine"],
+      "demand": ["passengers", "cars", "paper", "technology"]
+    },
+    {
+      "name": "london",
+      "phi": 51.5,
+      "gamma": -0.1167,
+      "size": 6,
+      "supply": ["passengers", "medicine", "technology", "government_contract"],
+      "demand": ["passengers", "cars", "arms", "grain", "textiles", "luxury_goods"]
+    }
+  ],
+  "trains": [
+    {
+
+    }
+  ]
+}
