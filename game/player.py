@@ -5,7 +5,7 @@ from game.train import Train
 
 
 ConnectionType = List[Dict[str, Union[City, Train, str, int]]]
-QueueType = List[ConnectionType]
+QueueType = List[List[Union[int, ConnectionType]]]
 FinanceType = List[Union[str, int]]
 
 
