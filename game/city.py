@@ -1,8 +1,8 @@
 from __future__ import annotations
-from typing import Tuple, List
+from typing import Tuple, List, Dict, Union
 
 from game.supply import Supply
-from util.constants import SUPPLY, DEMAND
+from util.constants import SUPPLY, DEMAND, CITIES, SUPPLIES
 
 
 class City:
@@ -42,6 +42,38 @@ class City:
     def demands(self) -> List[Supply]:
         return self.__demands
 
+    def IsStartCity(self) -> bool:
+        return self.__size <= 1
+
     @staticmethod
     def GenerateCityList() -> List[City]:
-        pass
+        mCities: List[City] = []
+        city: Dict[str, Union[int, float, str, List[str]]]
+        for city in CITIES:
+            mSupplies: List[Supply] = [
+                Supply(
+                    SUPPLIES[i]["name"],
+                    SUPPLIES[i]["value"],
+                    SUPPLIES[i]["weight"],
+                    SUPPLY
+                ) for i in range(len(SUPPLIES)) if SUPPLIES[i]["name"] in city["supply"]
+            ]
+            mDemands: List[Supply] = [
+                Supply(
+                    SUPPLIES[i]["name"],
+                    SUPPLIES[i]["value"],
+                    SUPPLIES[i]["weight"],
+                    DEMAND
+                ) for i in range(len(SUPPLIES)) if SUPPLIES[i]["name"] in city["demand"]
+            ]
+            mCities.append(
+                City(
+                    city["name"],
+                    city["phi"],
+                    city["gamma"],
+                    city["size"],
+                    mSupplies,
+                    mDemands
+                )
+            )
+        return mCities
