@@ -253,7 +253,11 @@
   ],
   "trains": [
     {
-
+      "name": "Languidade",
+      "price": 150,
+      "maintenance": 15,
+      "speed": 100,
+      "cargoSpace": 3
     }
   ]
 }
