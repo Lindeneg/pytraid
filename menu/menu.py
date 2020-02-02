@@ -1,60 +1,130 @@
 from os import system
+from time import sleep
+from typing import Optional, List
 
-
-from util.constants import CLEAR, viewDir
+from util.constants import CLEAR
+from util.functions import DistanceBetween
 from game.player import Player
+from game.city import City
 
 
 class Menu:
-    def Main(self, player: Player) -> Player:
-        nextPlayer: Player = self.__GetNextPlayer(player)
+    @staticmethod
+    def Main(player: Player, cities: List[City]) -> Player:
         while True:
             system(CLEAR)
-            print("\n\n\n" + depotTrain + "\n\n\n")
-            print(f"{player.name.upper()}'S TURN\n")
-            print(f"CURRENT GOLD: {player.gold}G")
-            print(f"CURRENT TURN: #{player.totalTurns}\n")
-            print("NEW  ROUTE                (N)")
-            print("EDIT ROUTE                (E)")
-            print("VIEW FINANCES             (F)")
-            print("VIEW ALL SUPPLIES         (V)")
-            print("VIEW OPPONENT INFO        (I)")
-            print("END TURN                  (Q)")
-            print("SAVE AND QUIT             (S)\n")
+            print(f"""
+{depotTrain}
+
+
+{player.name.upper()}'S TURN
+
+CURRENT GOLD     : {player.gold}G
+# OF CONNECTIONS : {len(player.connections)}
+# OF TURNS       : {player.totalTurns}
+
+NEW  ROUTE                (N)
+EDIT ROUTE                (E)
+VIEW FINANCES             (F)
+VIEW ALL SUPPLIES         (V)
+VIEW OPPONENT INFO        (I)
+END TURN                  (Q)
+SAVE AND QUIT             (S)
+
+""")
             choice: str = input("ENTER HERE: ")
             if choice.upper() == "N":
-                self.__NewRoute(player)      # TODO NewRoute
+                NewRoute(player, cities)      # TODO NewRoute
             elif choice.upper() == "E":
-                self.__EditRoute(player)     # TODO EditRoute
+                EditRoute(player)     # TODO EditRoute
             elif choice.upper() == "F":
-                self.__ViewFinances(player)  # TODO PresentFinance
+                ViewFinances(player)  # TODO PresentFinance
             elif choice.upper() == "V":
-                self.__ViewSupplies(player)  # TODO PresentSupplies
+                ViewSupplies(player)  # TODO PresentSupplies
             elif choice.upper() == "I":
-                self.__ViewOpponent(nextPlayer)  # TODO PresentCompetitor
+                ViewOpponent(player)  # TODO PresentCompetitor
             elif choice.upper() == "Q":
                 break
             elif choice.upper() == "S":
                 pass                         # TODO SAVE AND QUIT
-        return nextPlayer
-
-    def __NewRoute(self, player) -> None:
-        pass
-
-    def __EditRoute(self, player) -> None:
-        pass
-
-    def __ViewFinances(self, player) -> None:
-        pass
-
-    def __ViewSupplies(self, player) -> None:
-        pass
-
-    def __ViewOpponent(self, player) -> None:
-        pass
-
-    def __GetNextPlayer(self, player: Player) -> Player:
         return player
+
+
+def NewRoute(player: Player, cities: List[City], fCity: Optional[City] = None) -> None:
+    mHasConnections: str = ""
+    if not fCity:
+        fCity = player.startCity
+    if len(player.connections) >= 1:
+        mHasConnections = " | ENTER 'C' TO CHANGE CITY"
+    while True:
+        system(CLEAR)
+        print(f"""
+CURRENT CITY{mHasConnections}
+{fCity}
+
+AVAILABLE CONNECTIONS
+{"".join([city.DistanceStr(fCity, player) for city in cities 
+          if DistanceBetween(city, fCity) <= player.maxDistance and city != fCity])}
+""")
+        choice: str = input("ENTER KEY HERE (0 MAIN MENU): ")
+        choice = choice.upper()
+        ValidateCityKey(choice, player, fCity, cities)
+        if choice == "0":
+            break
+        if choice == "C" and len(mHasConnections) > 0:
+            ChangeNewRouteOverview()
+
+
+def NewRouteAddTrain():
+    pass
+
+
+def NewRouteAddCargo():
+    pass
+
+
+def ValidateCityKey(key: str, player: Player, fCity: City, cities: List[City]) -> None:
+    # TODO Temp store 'available connections' and use that to check against
+    if len(key) < 3 or len(key) > 3 or key == fCity.sName:
+        KeyErrorMessage(key)
+        return
+    city: City
+    for city in cities:
+        if key == city.sName:
+            distance: int = DistanceBetween(city, fCity)
+            cost: int = player.CalculateDistanceCost(distance)
+            if distance > player.maxDistance or cost > player.gold:
+                KeyErrorMessage(key)
+
+
+def KeyErrorMessage(key: str) -> None:
+    system(CLEAR)
+    print(f"\n\n\nKEY ERROR '{key}'\nTRY AGAIN")
+    sleep(2)
+
+
+def ChangeNewRouteOverview():
+    pass
+
+
+def EditRoute(player) -> None:
+    pass
+
+
+def ViewFinances(player) -> None:
+    pass
+
+
+def ViewSupplies(player) -> None:
+    pass
+
+
+def ViewOpponent(player) -> None:
+    pass
+
+
+def GetNextPlayer(player: Player) -> Player:
+    return player
 
 
 noCargoTrain = '''
@@ -144,3 +214,4 @@ logoTrain = '''
 ################# https://github.com/lindeneg ##################
 ################################################################
 '''
+
