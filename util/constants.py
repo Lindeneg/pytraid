@@ -1,5 +1,5 @@
 from os import path, name
-from typing import Union
+from typing import Union, Dict, Union, Callable
 
 from util.file_manager import ReadJSON, ReadType
 
@@ -19,3 +19,11 @@ gameData: ReadType = ReadJSON(f"{DATA_PATH}/data.json")
 SUPPLIES = gameData["supplies"]
 CITIES = gameData["cities"]
 TRAINS = gameData["trains"]
+
+mLEVELS: Dict[int, Union[int, float]] = {
+    1: 3,
+    2: 2.5,
+    3: 2,
+    4: 1.5,
+    5: 1
+}
