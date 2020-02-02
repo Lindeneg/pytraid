@@ -5,12 +5,14 @@ from game.player import Player
 from game.city import City
 
 cities = City.GenerateCityList()
-player = Player("Christian", cities[0])
+startCities = City.GetStartCities()
+
+
+player = Player("Christian", startCities[0])
 
 
 def main():
-    menu = Menu()
-    menu.Main(player)
+    Menu.Main(player, cities)
 
 
 if __name__ == "__main__":
