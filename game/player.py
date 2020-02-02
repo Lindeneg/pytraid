@@ -1,4 +1,6 @@
 from typing import List, Dict, Union
+
+from util.constants import mLEVELS
 from game.city import City
 from game.supply import Supply
 from game.train import Train
@@ -36,10 +38,29 @@ class Player:
         return self.__gold
 
     @property
+    def maxDistance(self) -> int:
+        return self.__maxDist
+
+    @property
+    def connections(self) -> ConnectionType:
+        return self.__connections
+
+    @property
     def totalTurns(self) -> int:
         return self.__totalTurns
+
+    @property
+    def startCity(self) -> City:
+        return self.__startCity
+
+    def CalculateDistanceCost(self, distance) -> int:
+        return int(distance * mLEVELS[self.__level])
+
 
     # Todo Implement Player methods
     # GetGold
     # GetConnections
     # GetQueue
+    # GetFinances
+
+
