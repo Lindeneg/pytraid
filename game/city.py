@@ -56,8 +56,8 @@ class City:
         distance: int = DistanceBetween(self, otherCity)
         return f"""
 NAME    : {self.name.upper()}
-DISTANCE: {distance}G
-COST    : {player.CalculateDistanceCost(distance)}KM
+DISTANCE: {distance}KM
+COST    : {player.CalculateDistanceCost(distance)}G
 SUPPLY  : {"".join([i.__repr__() for i in self.supplies])}
 DEMAND  : {"".join([i.__repr__() for i in self.demands])}
 KEY     : {self.sName.upper()}
