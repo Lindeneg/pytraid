@@ -253,11 +253,25 @@
   ],
   "trains": [
     {
-      "name": "Languidade",
+      "name": "languidade",
       "price": 150,
       "maintenance": 15,
       "speed": 100,
       "cargoSpace": 3
+    },
+    {
+      "name": "mediann",
+      "price": 250,
+      "maintenance": 20,
+      "speed": 145,
+      "cargoSpace": 4
+    },
+    {
+      "name": "boltify",
+      "price": 350,
+      "maintenance": 20,
+      "speed": 175,
+      "cargoSpace": 6
     }
   ]
 }
