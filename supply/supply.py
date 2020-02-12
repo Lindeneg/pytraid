@@ -1,5 +1,4 @@
 from __future__ import annotations
-from util.constants import SUPPLY, DEMAND
 
 
 class Supply:
@@ -20,6 +19,10 @@ class Supply:
         return self.__name.replace("_", " ")
 
     @property
+    def sName(self) -> str:
+        return self.name[:3].upper()
+
+    @property
     def value(self) -> int:
         return self.__value
 
@@ -30,6 +33,21 @@ class Supply:
     @property
     def typeof(self) -> str:
         return self.__typeof
+
+    def KeyString(self) -> str:
+        return f"""
+NAME  : {self.name.upper()}
+VALUE : {self.value}
+WEIGHT: {self.weight}
+KEY   : {self.name[:3].upper()}
+"""
+
+    def NonKeyString(self) -> str:
+        return f"""
+NAME  : {self.name.upper()}
+VALUE : {self.value}
+WEIGHT: {self.weight}
+"""
 
     def __eq__(self, otherSupply: Supply) -> bool:
         return self.name == otherSupply.name
