@@ -1,18 +1,8 @@
-#from game.game import Game
-
-from menu.menu import Menu
-from game.player import Player
-from game.city import City
-
-cities = City.GenerateCityList()
-startCities = City.GetStartCities()
-
-
-player = Player("Christian", startCities[0])
+from game.game import Game
 
 
 def main():
-    Menu.Main(player, cities)
+    Game()
 
 
 if __name__ == "__main__":
