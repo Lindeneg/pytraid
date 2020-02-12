@@ -1,13 +1,12 @@
 from __future__ import annotations
-from typing import Tuple, List, Dict, Union, TypeVar
+from typing import Tuple, List, Dict, Union
+from math import sin, cos, sqrt, atan2, radians
 
-from game.supply import Supply
-from util.functions import DistanceBetween
+from supply.supply import Supply
 from util.constants import SUPPLY, DEMAND, CITIES, SUPPLIES
 
 # TODO Introduce a city amount of supplies/demands which corresponds to the size of the city
 
-Player = TypeVar("Player")
 START_CITIES: List[City] = []
 
 
@@ -52,12 +51,11 @@ class City:
     def demands(self) -> List[Supply]:
         return self.__demands
 
-    def DistanceStr(self, otherCity: City, player: Player) -> str:
-        distance: int = DistanceBetween(self, otherCity)
+    def DistanceStr(self, distance: int, cost: int) -> str:
         return f"""
 NAME    : {self.name.upper()}
 DISTANCE: {distance}KM
-COST    : {player.CalculateDistanceCost(distance)}G
+COST    : {cost}G
 SUPPLY  : {"".join([i.__repr__() for i in self.supplies])}
 DEMAND  : {"".join([i.__repr__() for i in self.demands])}
 KEY     : {self.sName.upper()}
@@ -94,6 +92,21 @@ KEY     : {self.sName.upper()}
                 START_CITIES.append(mCity)
             mCities.append(mCity)
         return mCities
+
+    @staticmethod
+    def DistanceBetween(c1: City, c2: City) -> int:
+        p1: float
+        p2: float
+        g1: float
+        g2: float
+        R: int = 6371
+        p1, g1 = c1.coordinates
+        p2, g2 = c2.coordinates
+        deltaPhi: float = abs(radians(p2) - radians(p1))
+        deltaGamma: float = abs(radians(g2) - radians(g1))
+        a: float = sin(deltaPhi / 2) ** 2 + cos(radians(p1)) * cos(radians(p2)) * sin(deltaGamma / 2) ** 2
+        c: float = 2 * atan2(sqrt(abs(a)), sqrt(abs(1 - a)))
+        return int(R * c)
 
     def __eq__(self, otherCity: City) -> bool:
         return self.name == otherCity.name
