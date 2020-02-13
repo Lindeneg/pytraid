@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import List, Union
+from typing import List, Union, Callable
 
 from util.constants import City, Cargo
 from train.train import Train
@@ -68,32 +68,25 @@ class Route:
     def name(self) -> str:
         return f"{self.departCity.sName} | {self.arriveCity.sName}"
 
-    def HandleMovement(self) -> None:
-        if self.currentCity[0] is False:
-            if self.currentDistance <= 0:
-                if self.currentCity[1] == self.departCity:
-                    self.currentCity[1] = self.arriveCity
-                else:
-                    self.currentCity[1] = self.departCity
-                self.currentCity[0] = True
-            else:
-                self.currentDistance = self.currentDistance - self.train.speed
-        else:
-            self.currentDistance = self.distance
-            self.currentCity[0] = False
-
     def ChangeCargo(self, newCargo: Cargo) -> None:
         self.train.cargo = newCargo
 
     def KeyString(self) -> str:
+        distance: Callable = lambda d: 0 if d <= 0 else d
         return f"""
-DEPART  : {self.departCity.name.upper()}
-ARRIVE  : {self.arriveCity.name.upper()}
-DISTANCE: {self.distance}
-COST    : {self.cost}
-TRAIN   : {self.train.name.upper()}
-KEY     : {self.mID}
+ROUTE            : {self.name.upper()}
+DISTANCE TO CITY : {distance(self.currentDistance)}KM
+STATUS           : {self.Status()}
+KEY              : {self.mID}
 """
+
+    def Status(self) -> str:
+        statusStr: str
+        if self.currentCity[0] is False:
+            statusStr = "EN-ROUTE FROM"
+        else:
+            statusStr = "IN CITY"
+        return f"{statusStr} {self.currentCity[1].name.upper()}"
 
     def __eq__(self, other: Route) -> bool:
         return (self.departCity == other.departCity and self.arriveCity == other.arriveCity) \
