@@ -11,7 +11,7 @@ from route.route import Route
 
 class Menu:
     @staticmethod
-    def Main(player: Player, cities: List[City], trains: Dict[str, Train]) -> Player:
+    def Main(player: Player, cities: List[City], trains: Dict[str, Train]) -> None:
         while True:
             system(CLEAR)
             print(f"""
@@ -46,9 +46,6 @@ SAVE AND QUIT             (S)
                 break
             elif choice == "S":
                 pass  # TODO SAVE AND QUIT
-        player.ClearTurnFinance()
-        player.IncrementTurns()
-        return player
 
 
 def NewRoute(player: Player, cities: List[City], trains: Dict[str, Train], fCity: Optional[City] = None) -> None:
@@ -89,20 +86,18 @@ AVAILABLE CONNECTIONS
                         else:
                             totalCost: int = cost + train.price
                             if player.gold < totalCost:
-                                print("CANNOT AFFORD ROUTE AND TRAIN.")
-                                sleep(2)
+                                KeyErrorMessage("CANNOT AFFORD ROUTE AND TRAIN.")
                                 break
                             AddCargoToTrain(train, fCity, city, DEPART)
                             AddCargoToTrain(train, city, fCity, ARRIVE)
-                            route: Route = Route(len(player.connections), fCity, city, train, distance, totalCost)
+                            route: Route = Route(len(player.connections)+1, fCity, city, train, distance, totalCost)
                             if HasCappedRoutes(player, route):
-                                system(CLEAR)
-                                print(f"YOU ALREADY HAVE THE MAXIMUM AMOUNT OF THIS ROUTE: {route.name}")
-                                sleep(2)
+                                KeyErrorMessage(f"YOU ALREADY HAVE THE MAXIMUM AMOUNT OF THIS ROUTE: {route.name}")
                             else:
                                 if PurchaseRoute(player, route):
-                                    player.AddToBuildQueue(route)
                                     player.gold = player.gold - totalCost
+                                    player.AddToBuildQueue(route)
+                                    player.AddExpense(Route)
                                     mFinished = True
                             break
             if mFinished:
@@ -178,9 +173,7 @@ CURRENT SPACE : {train.cargoSpace - CargoWeight(train.cargo[typeof])}
                 if supply.weight + CargoWeight(train.cargo[typeof]) <= train.cargoSpace:
                     train.cargo[typeof].append(supply)
                 else:
-                    system(CLEAR)
-                    print(f"{supply.name.upper()} TAKES MORE SPACE THAN AVAILABLE")
-                    sleep(2)
+                    KeyErrorMessage(f"{supply.name.upper()} TAKES MORE SPACE THAN AVAILABLE")
 
 
 def GetConnectionInfo(player: Player, cities: List[City], fCity: City) -> ConnectionInfo:
@@ -189,7 +182,7 @@ def GetConnectionInfo(player: Player, cities: List[City], fCity: City) -> Connec
         if not city == fCity:
             distance = City.DistanceBetween(fCity, city)
             cost = player.CalculateDistanceCost(distance)
-            if not distance > player.maxDistance and not cost > player.gold:
+            if not distance > player.maxDistance:
                 cityList.append((city, distance, cost))
     return cityList
 
@@ -224,6 +217,9 @@ def ChangeNewRouteOverview(player: Player, cities: List[City], trains: Dict[str,
 
 
 def EditRoute(player) -> None:
+    if len(player.connections) < 1:
+        KeyErrorMessage("YOU HAVE NO CONNECTIONS TO EDIT")
+        return
     while True:
         system(CLEAR)
         print("EDITABLE ROUTES:")
@@ -240,7 +236,19 @@ def KeyErrorMessage(msg: str) -> None:
 
 
 def ViewFinances(player) -> None:
-    pass
+    if len(player.turnFinance["income"]) < 1 and len(player.turnFinance["expense"]) < 1:
+        KeyErrorMessage("YOU HAVE NO FINANCE DATA TO SHOW THIS TURN")
+        return
+    system(CLEAR)
+    for i in player.turnFinance["income"]:
+        print("income")
+        print(i)
+    for i in player.turnFinance["expense"]:
+        print("expense")
+        print(i)
+    choice: str = GetUserChoice()
+    if choice == "0":
+        return
 
 
 def ViewOpponent(player) -> None:
