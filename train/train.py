@@ -37,6 +37,10 @@ class Train:
         return self.__speed
 
     @property
+    def maintenance(self) -> int:
+        return self.__maintenance
+
+    @property
     def cargoSpace(self) -> int:
         return self.__cargoSpace
 
