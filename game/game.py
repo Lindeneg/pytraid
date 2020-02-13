@@ -1,6 +1,6 @@
-from typing import Optional
+from typing import Optional, List, Union
 
-from util.constants import Route, Cargo, DEPART, ARRIVE
+from util.constants import Route, Cargo, Supply, DEPART, ARRIVE
 from game.menu import Menu
 from player.player import Player
 from city.city import City
@@ -16,12 +16,15 @@ player2 = Player("Far", startCities[0])
 players = [player, player2]
 
 
-def Game() -> None:
+def Game() -> None:  # TODO: Make into Game Class: init: players, cities and trains
     mPlayer: Optional[Player] = None
     while True:
         mPlayer = GetNextPlayer(mPlayer)
         HandlePlayerQueue(mPlayer)
-        Menu.Main(mPlayer, cities, trains)
+        HandlePlayerRoutes(mPlayer)
+        Menu.Main(mPlayer, cities, trains)  # TODO: Make Menu.Main() non-static and initiate it with an instance of Game
+        mPlayer.ClearTurnFinance()
+        mPlayer.IncrementTurns()
 
 
 def GetNextPlayer(mPlayer: Optional[Player]) -> Player:
@@ -49,7 +52,10 @@ def HandlePlayerQueue(mPlayer: Player) -> None:
 def HandlePlayerRoutes(mPlayer: Player) -> None:
     if len(mPlayer.connections) < 1:
         return
+    route: Route
     for route in mPlayer.connections:
+        mPlayer.gold = mPlayer.gold - route.train.maintenance
+        mPlayer.AddExpense(route.train)
         if route.currentCity[0] is False:
             if route.currentDistance <= 0:
                 cargo: Cargo
@@ -72,8 +78,13 @@ def HandlePlayerRoutes(mPlayer: Player) -> None:
 
 
 def HandlePlayerIncome(mPlayer: Player) -> None:
-    if len(mPlayer.turnFinance) < 1:
+    if len(mPlayer.turnFinance["income"]) < 1:
         return
+    income: int = 0
+    i: List[Union[int, Supply]]
+    for i in mPlayer.turnFinance["income"]:
+        income += i[0] * i[1].value
+    mPlayer.gold = mPlayer.gold + income
 
 
 def HandlePlayerAttributes(mPlayer: Player) -> None:
