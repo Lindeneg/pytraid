@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, List
 
 from util.constants import mLEVELS, City, Connection, Supply, Route, Train, Queue, FinanceList
 from route.route import Route
@@ -32,7 +32,7 @@ class Player:
         return self.__gold
 
     @gold.setter
-    def gold(self, other) -> None:
+    def gold(self, other: int) -> None:
         self.__gold = other
 
     @property
@@ -82,6 +82,7 @@ class Player:
         self.__turnFinance["income"].append([1, thatFinance])
 
     def AddExpense(self, thatExpense: Union[Train, Route]) -> None:
+        thisExpense: List[Union[int, Train, Route]]
         for thisExpense in self.turnFinance["expense"]:
             if thisExpense[1] == thatExpense:
                 thisExpense[0] += 1
