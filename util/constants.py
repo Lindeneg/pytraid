@@ -12,7 +12,7 @@ Supply = TypeVar("Supply")
 Connection = List[Route]
 Queue = List[List[Union[int, Route]]]
 ConnectionInfo = List[Tuple[City, int, int]]
-FinanceList = Dict[str, Union[List[List[Union[int, Union[Supply, Train, Route]]]]]]
+FinanceList = Dict[str, List[List[Union[int, Supply, Train, Route]]]]
 Cargo = Dict[str, List[Supply]]
 
 if name.lower() == "nt":
