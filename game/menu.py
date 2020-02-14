@@ -1,7 +1,8 @@
 from os import system
 from time import sleep
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Union, Callable
 
+from supply.supply import Supply
 from util.constants import CLEAR, ConnectionInfo, DEPART, ARRIVE
 from player.player import Player
 from city.city import City
@@ -27,19 +28,22 @@ CURRENT QUEUE    : {len(player.queue)}
 
 NEW  ROUTE                (N)
 EDIT ROUTE                (E)
+VIEW BUILD QUEUE          (B)
 VIEW FINANCES             (F)
 VIEW OPPONENT INFO        (I)
 END TURN                  (Q)
 SAVE AND QUIT             (S)
 
 """)
-            choice: str = GetUserChoice(True)
+            choice: str = GetUserChoice(inMainMenu=True)
             if choice == "N":
                 NewRoute(player, cities, trains)
             elif choice == "E":
                 EditRoute(player)  # TODO EditRoute
+            elif choice == "B":
+                ViewQueue(player)
             elif choice == "F":
-                ViewFinances(player)  # TODO PresentFinance
+                ViewFinances(player)
             elif choice == "I":
                 ViewOpponent(player)  # TODO PresentCompetitor
             elif choice == "Q":
@@ -97,7 +101,7 @@ AVAILABLE CONNECTIONS
                                 if PurchaseRoute(player, route):
                                     player.gold = player.gold - totalCost
                                     player.AddToBuildQueue(route)
-                                    player.AddExpense(Route)
+                                    player.AddExpense(route)
                                     mFinished = True
                             break
             if mFinished:
@@ -135,6 +139,7 @@ def GetTrain(trains: Dict[str, Train]) -> Optional[Train]:
     while True:
         system(CLEAR)
         print("PURCHASABLE TRAINS: ")
+        train: Train
         for train in trains.values():
             print(train)
         choice: str = GetUserChoice()
@@ -149,8 +154,8 @@ def GetTrain(trains: Dict[str, Train]) -> Optional[Train]:
 
 
 def AddCargoToTrain(train: Train, fCity: City, tCity: City, typeof: str) -> None:
-    CargoWeight = lambda cargo: sum([i.weight for i in cargo])
-    IsFull = lambda cargo, limit: False if len(cargo) < 1 else (True if CargoWeight(cargo) >= limit else False)
+    CargoWeight: Callable = lambda cargo: sum([i.weight for i in cargo])
+    IsFull: Callable = lambda cargo, limit: False if len(cargo) < 1 else (True if CargoWeight(cargo) >= limit else False)
     while not IsFull(train.cargo[typeof], train.cargoSpace):
         system(CLEAR)
         print(f"""
@@ -168,6 +173,7 @@ CURRENT SPACE : {train.cargoSpace - CargoWeight(train.cargo[typeof])}
         choice: str = GetUserChoice()
         if choice == "0":
             break
+        supply: Supply
         for supply in fCity.supplies:
             if choice == supply.sName:
                 if supply.weight + CargoWeight(train.cargo[typeof]) <= train.cargoSpace:
@@ -178,6 +184,7 @@ CURRENT SPACE : {train.cargoSpace - CargoWeight(train.cargo[typeof])}
 
 def GetConnectionInfo(player: Player, cities: List[City], fCity: City) -> ConnectionInfo:
     cityList: ConnectionInfo = []
+    city: City
     for city in cities:
         if not city == fCity:
             distance = City.DistanceBetween(fCity, city)
@@ -187,12 +194,14 @@ def GetConnectionInfo(player: Player, cities: List[City], fCity: City) -> Connec
     return cityList
 
 
-def GetUserChoice(inMainMenu: bool = False) -> str:
+def GetUserChoice(inMainMenu: bool = False, inFinanceMenu: bool = False) -> str:
     choice: str
-    if not inMainMenu:
-        choice = input("ENTER KEY HERE (0 TO CANCEL): ")
-    else:
+    if inMainMenu:
         choice = input("ENTER KEY HERE: ")
+    elif inFinanceMenu:
+        choice = input("ENTER 0 TO GO BACK: ")
+    else:
+        choice = input("ENTER KEY HERE (0 TO CANCEL): ")
     return choice.upper()
 
 
@@ -216,7 +225,7 @@ def ChangeNewRouteOverview(player: Player, cities: List[City], trains: Dict[str,
                 NewRoute(player, cities, trains, city)
 
 
-def EditRoute(player) -> None:
+def EditRoute(player: Player) -> None:
     if len(player.connections) < 1:
         KeyErrorMessage("YOU HAVE NO CONNECTIONS TO EDIT")
         return
@@ -229,30 +238,61 @@ def EditRoute(player) -> None:
             break
 
 
+def ViewQueue(player: Player) -> None:
+    if len(player.queue) < 1:
+        KeyErrorMessage("YOUR BUILD QUEUE IS EMPTY")
+        return
+    while True:
+        system(CLEAR)
+        print("CURRENT QUEUE")
+        i: List[Union[int, Route]]
+        for i in player.queue:
+            print(f"{i[1]}TURN COST: {i[0]}")
+        choice: str = input("\n\nENTER 0 TO GO BACK: ")
+        if choice == "0":
+            break
+
+
+def ViewFinances(player: Player) -> None:
+    total: int = 0
+    while True:
+        system(CLEAR)
+        print(f"FINANCE FOR TURN #{player.totalTurns}\n")
+        print("INCOME\n")
+        if len(player.turnFinance["income"]) < 1:
+            print("NO INCOME THIS TURN\n")
+        else:
+            income: List[Union[int, Supply]]
+            for income in player.turnFinance["income"]:
+                total += (income[0] * income[1].value)
+                print(f"{income[0] * income[1].value}G FOR {income[1].name.upper()}")
+        print("EXPENSE\n")
+        if len(player.turnFinance["expense"]) < 1:
+            print("NO EXPENSES THIS TURN\n")
+        else:
+            expense: List[Union[int, Train, Route]]
+            for expense in player.turnFinance["expense"]:
+                if not expense[1].IsRoute:
+                    total -= (expense[0] * expense[1].maintenance)
+                    print(f"{expense[0] * expense[1].maintenance}G FOR {expense[1].name.upper()} UPKEEP")
+                else:
+                    total -= (expense[0] * expense[1].cost)
+                    print(f"{expense[0] * expense[1].cost}G FOR {expense[1].name.upper()} ROUTE")
+        print("TOTAL\n")
+        print(f"{total}G\n")
+        choice: str = GetUserChoice(inFinanceMenu=True)
+        if choice == "0":
+            break
+
+
+def ViewOpponent(player: Player) -> None:
+    pass
+
+
 def KeyErrorMessage(msg: str) -> None:
     system(CLEAR)
     print(f"{msg}")
     sleep(2)
-
-
-def ViewFinances(player) -> None:
-    if len(player.turnFinance["income"]) < 1 and len(player.turnFinance["expense"]) < 1:
-        KeyErrorMessage("YOU HAVE NO FINANCE DATA TO SHOW THIS TURN")
-        return
-    system(CLEAR)
-    for i in player.turnFinance["income"]:
-        print("income")
-        print(i)
-    for i in player.turnFinance["expense"]:
-        print("expense")
-        print(i)
-    choice: str = GetUserChoice()
-    if choice == "0":
-        return
-
-
-def ViewOpponent(player) -> None:
-    pass
 
 
 noCargoTrain = '''
