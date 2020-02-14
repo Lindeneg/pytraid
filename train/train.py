@@ -19,6 +19,7 @@ class Train:
         self.__speed: int = speed
         self.__cargoSpace: int = cargoSpace
         self.__cargo: Cargo = {"departure": [], "arrival": []}
+        self.IsRoute: bool = False
 
     @property
     def name(self) -> str:
