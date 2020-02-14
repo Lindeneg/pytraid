@@ -23,6 +23,7 @@ class Route:
         self.__cost: int = cost
         self.__currentCity: List[Union[bool, City]] = [False, self.departCity]
         self.__currentDistance: int = distance
+        self.IsRoute: bool = True
 
     @property
     def currentCity(self) -> List[Union[bool, City]]:
@@ -94,9 +95,9 @@ KEY              : {self.mID}
 
     def __repr__(self) -> str:
         return f"""
-DEPART  : {self.departCity.name.upper()}
-ARRIVE  : {self.arriveCity.name.upper()}
-DISTANCE: {self.distance}
-COST    : {self.cost}
-TRAIN   : {self.train.name.upper()}
+DEPART   : {self.departCity.name.upper()}
+ARRIVE   : {self.arriveCity.name.upper()}
+DISTANCE : {self.distance}
+COST     : {self.cost}
+TRAIN    : {self.train.name.upper()}
 """
