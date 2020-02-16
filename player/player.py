@@ -1,4 +1,12 @@
-from typing import Union, List, Any
+"""
+Author : Christian Lindeneg
+         https://github.com/Lindeneg
+Contact: christian@lindeneg.org
+Licence: Public Domain
+"""
+
+from __future__ import annotations
+from typing import Union, List
 
 from util.constants import mLEVELS, City, Connection, Supply, Route, Train, Queue, FinanceList, InitialPlayerVals
 from route.route import Route
@@ -111,6 +119,9 @@ class Player:
 
     def CalculateDistanceCost(self, distance: int) -> int:
         return int(distance * mLEVELS[self.__level])
+
+    def __eq__(self, other: Player):
+        return self.name == other.name
 
     def __repr__(self) -> str:
         return f"""
