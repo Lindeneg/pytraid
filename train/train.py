@@ -1,3 +1,10 @@
+"""
+Author : Christian Lindeneg
+         https://github.com/Lindeneg
+Contact: christian@lindeneg.org
+Licence: Public Domain
+"""
+
 from __future__ import annotations
 from typing import Dict
 
@@ -76,9 +83,9 @@ class Train:
     def __repr__(self) -> str:
         return f"""
 NAME  : {self.name.upper()}
-COST  : {self.price}
-UPKEEP: {self.__maintenance}
-SPEED : {self.speed}
+COST  : {self.price}G
+UPKEEP: {self.__maintenance}G
+SPEED : {self.speed}KM/TURN
 CARGO : {self.cargoSpace}
 KEY   : {self.sName.upper()}
 """
