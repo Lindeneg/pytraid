@@ -1,5 +1,5 @@
 from os import path, name
-from typing import Tuple, Dict, Union, TypeVar, List, Any
+from typing import Tuple, Dict, Union, TypeVar, List
 
 from util.file_manager import ReadJSON, ReadType
 
@@ -8,6 +8,7 @@ Player = TypeVar("Player")
 Route = TypeVar("Route")
 Train = TypeVar("Train")
 Supply = TypeVar("Supply")
+Game = TypeVar("Game")
 
 Connection = List[Route]
 Queue = List[List[Union[int, Route]]]
@@ -24,15 +25,16 @@ else:
 
 SAVE_PATH: Union[bytes, str] = path.join(path.dirname(__file__), '..', "saves")
 DATA_PATH: Union[bytes, str] = path.join(path.dirname(__file__), '..', "data")
+
 SUPPLY: str = "supply"
 DEMAND: str = "demand"
 DEPART: str = "departure"
 ARRIVE: str = "arrival"
 
 gameData: ReadType = ReadJSON(f"{DATA_PATH}/data.json")
-SUPPLIES = gameData["supplies"]
-CITIES = gameData["cities"]
-TRAINS = gameData["trains"]
+SUPPLIES: List[Dict[str, Union[int, str]]] = gameData["supplies"]
+CITIES: List[Dict[str, Union[int, float, str, List[str]]]] = gameData["cities"]
+TRAINS: List[Dict[str, Union[int, str]]] = gameData["trains"]
 
 mLEVELS: Dict[int, Union[int, float]] = {
     1: 3,
@@ -40,4 +42,9 @@ mLEVELS: Dict[int, Union[int, float]] = {
     3: 2,
     4: 1.5,
     5: 1
+}
+
+InitialPlayerVals: Dict[str, int] = {
+    "gold": 2000,
+    "distance": 150
 }
