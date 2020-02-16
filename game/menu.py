@@ -1,6 +1,14 @@
+"""
+Author : Christian Lindeneg
+         https://github.com/Lindeneg
+Contact: christian@lindeneg.org
+Licence: Public Domain
+"""
+
 from os import system
 from time import sleep
-from typing import Optional, List, Dict, Union, Callable
+from typing import Optional, List, Dict, Union, Tuple, Callable
+from random import randint
 
 from supply.supply import Supply
 from util.constants import CLEAR, ConnectionInfo, DEPART, ARRIVE, Game
@@ -47,11 +55,45 @@ SAVE AND QUIT             (S)
             elif choice == "F":
                 ViewFinances(mPlayer)
             elif choice == "I":
-                ViewOpponent(mPlayer)  # TODO PresentCompetitor
+                ViewOpponent(mPlayer, self.game.players)
             elif choice == "Q":
                 break
             elif choice == "S":
-                pass  # TODO SAVE AND QUIT
+                KeyErrorMessage("CURRENTLY NOT IMPLEMENTED")
+
+    @staticmethod
+    def StartMenu() -> Tuple[List[Player], List[City], Dict[str, Train]]:
+        while True:
+            system(CLEAR)
+            print(f"""
+NEW GAME          (N)
+LOAD GAME         (L) - NOT IMPLEMENTED
+QUIT              (Q)
+    """)
+            choice: str = GetUserChoice(inMainMenu=True)
+            if choice == "Q":
+                quit()
+            if choice == "L":
+                KeyErrorMessage("CURRENTLY NOT IMPLEMENTED")
+            if choice == "N":
+                mPlayer: Player
+                yPlayer: Player
+                cities: List[City] = City.GenerateCityList()
+                trains: Dict[str, Train] = Train.GenerateTrainsDict()
+                startCities: List[City] = City.GetStartCities()
+                system(CLEAR)
+                name: str = input("ENTER YOUR NAME: ")
+                mPlayer, startCities = StartCityPlayer(startCities, name)
+                yPlayer, startCities = StartCityPlayer(startCities, "TestOpponent")
+                players: List[Player] = [mPlayer, yPlayer]
+                return players, cities, trains
+
+
+def StartCityPlayer(mStartCities: List[City], name: str) -> Tuple[Player, List[City]]:
+    i: int = randint(0, len(mStartCities) - 1)
+    player: Player = Player(name, mStartCities[i])
+    mStartCities.pop(i)
+    return player, mStartCities
 
 
 def NewRoute(player: Player, cities: List[City], trains: Dict[str, Train], fCity: Optional[City] = None) -> None:
@@ -301,8 +343,11 @@ def ViewFinances(player: Player) -> None:
             break
 
 
-def ViewOpponent(player: Player) -> None:
-    pass
+def ViewOpponent(mPlayer: Player, players: List[Player]) -> None:
+    system(CLEAR)
+    [print(player) for player in players if not player == mPlayer]
+    GetUserChoice(inNonInteractiveMenu=True)
+    return
 
 
 def KeyErrorMessage(msg: str) -> None:
