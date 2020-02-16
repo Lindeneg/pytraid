@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import List, Union, Callable
 
-from util.constants import City, Cargo
+from util.constants import City, DEPART, ARRIVE
 from train.train import Train
 
 
@@ -69,8 +69,9 @@ class Route:
     def name(self) -> str:
         return f"{self.departCity.sName} | {self.arriveCity.sName}"
 
-    def ChangeCargo(self, newCargo: Cargo) -> None:
-        self.train.cargo = newCargo
+    def Reset(self) -> None:
+        self.currentCity = [False, self.departCity]
+        self.currentDistance = self.distance
 
     def KeyString(self) -> str:
         distance: Callable = lambda d: 0 if d <= 0 else d
@@ -78,6 +79,8 @@ class Route:
 ROUTE            : {self.name.upper()}
 DISTANCE TO CITY : {distance(self.currentDistance)}KM
 STATUS           : {self.Status()}
+DEPART CARGO     : {[cargo.name.upper() for cargo in self.train.cargo[DEPART]]}
+ARRIVE CARGO     : {[cargo.name.upper() for cargo in self.train.cargo[ARRIVE]]}
 KEY              : {self.mID}
 """
 
