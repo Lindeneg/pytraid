@@ -1,4 +1,12 @@
-from typing import Optional, List, Dict, Union
+"""
+Author : Christian Lindeneg
+         https://github.com/Lindeneg
+Contact: christian@lindeneg.org
+Licence: Public Domain
+"""
+
+from __future__ import annotations
+from typing import Optional, List, Dict, Tuple, Union
 from time import sleep
 
 from util.constants import Route, Cargo, Supply, DEPART, ARRIVE
@@ -51,6 +59,11 @@ class Game:
         if not mPlayer or self.players.index(mPlayer) == len(self.players) - 1:
             return self.players[0]
         return self.players[self.players.index(mPlayer) + 1]
+
+    @staticmethod
+    def Setup() -> Game:
+        players, cities, trains = Menu.StartMenu()
+        return Game(players, cities, trains)
 
 
 def HasPlayerWon(mPlayer: Player) -> bool:
