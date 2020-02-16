@@ -1,3 +1,10 @@
+"""
+Author : Christian Lindeneg
+         https://github.com/Lindeneg
+Contact: christian@lindeneg.org
+Licence: Public Domain
+"""
+
 from __future__ import annotations
 
 
@@ -37,16 +44,16 @@ class Supply:
     def KeyString(self) -> str:
         return f"""
 NAME  : {self.name.upper()}
-VALUE : {self.value}
-WEIGHT: {self.weight}
+VALUE : {self.value}G
+WEIGHT: {self.weight}T
 KEY   : {self.name[:3].upper()}
 """
 
     def NonKeyString(self) -> str:
         return f"""
 NAME  : {self.name.upper()}
-VALUE : {self.value}
-WEIGHT: {self.weight}
+VALUE : {self.value}G
+WEIGHT: {self.weight}T
 """
 
     def __eq__(self, otherSupply: Supply) -> bool:
