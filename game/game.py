@@ -134,5 +134,5 @@ def HandlePlayerIncome(mPlayer: Player) -> None:
     mPlayer.gold = mPlayer.gold + income
 
 
-def HandlePlayerAttributes(mPlayer: Player) -> None: # TODO
+def HandlePlayerAttributes(mPlayer: Player) -> None:  # TODO 3
     pass

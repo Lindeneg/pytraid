@@ -126,7 +126,7 @@ def GetPlayers(mStartCities: List[City]) -> List[Player]:
     system(CLEAR)
     name: str = input("ENTER YOUR NAME: ")
     mPlayer, mStartCities = GetPlayerStartCity(mStartCities, name)
-    yPlayer, mStartCities = GetPlayerStartCity(mStartCities, "TestOpponent")  # TODO Create Opponent
+    yPlayer, mStartCities = GetPlayerStartCity(mStartCities, "TestOpponent")  # TODO 10
     return [mPlayer, yPlayer]
 
 

@@ -12,7 +12,7 @@ from util.constants import mLEVELS, City, Connection, Supply, Route, Train, Queu
 from route.route import Route
 
 
-class Player:
+class Player:  # TODO 3 | 5
     def __init__(
             self,
             name: str,

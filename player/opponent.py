@@ -8,5 +8,5 @@ Licence: Public Domain
 from player.player import Player
 
 
-class Opponent(Player):
+class Opponent(Player):  # TODO 10
     pass

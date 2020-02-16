@@ -12,12 +12,10 @@ from math import sin, cos, sqrt, atan2, radians
 from supply.supply import Supply
 from util.constants import SUPPLY, DEMAND, CITIES, SUPPLIES
 
-# TODO Introduce a city amount of supplies/demands which corresponds to the size of the city
-
 START_CITIES: List[City] = []
 
 
-class City:
+class City:  # TODO 6
     def __init__(
             self,
             name: str,
