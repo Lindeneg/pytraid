@@ -6,9 +6,10 @@ Licence: Public Domain
 """
 
 from __future__ import annotations
-from typing import Optional, List, Dict, Union
+from typing import Optional, List, Dict, Tuple, Union
 
-from util.constants import Route, Cargo, Supply, DEPART, ARRIVE, InitialPlayerVals
+from util.constants import SAVE_PATH, Route, Cargo, Supply, DEPART, ARRIVE, InitialPlayerVals
+from util.file_manager import FileManager
 from game.menu import Menu
 from player.player import Player
 from city.city import City
@@ -59,9 +60,16 @@ class Game:
             return self.players[0]
         return self.players[self.players.index(mPlayer) + 1]
 
+    def SaveGame(self, name: str) -> None:
+        FileManager((SAVE_PATH, name), self)
+
     @staticmethod
     def Setup() -> Game:
-        players, cities, trains = Menu.StartMenu()
+        game: Union[Tuple[List[Player], List[City], Dict[str, Train]], Game] = Menu.StartMenu()
+        try:
+            players, cities, trains = game
+        except TypeError:
+            return game
         return Game(players, cities, trains)
 
 
@@ -126,5 +134,5 @@ def HandlePlayerIncome(mPlayer: Player) -> None:
     mPlayer.gold = mPlayer.gold + income
 
 
-def HandlePlayerAttributes(mPlayer: Player) -> None:
+def HandlePlayerAttributes(mPlayer: Player) -> None: # TODO
     pass
