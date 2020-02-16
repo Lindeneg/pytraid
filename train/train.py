@@ -66,6 +66,13 @@ class Train:
             )
         return mTrains
 
+    @staticmethod
+    def GetTrain(train: Train) -> Train:
+        return Train(train.name, train.price, train.maintenance, train.speed, train.cargoSpace)
+
+    def __eq__(self, other: Train) -> bool:
+        return self.name == other.name
+
     def __repr__(self) -> str:
         return f"""
 NAME  : {self.name.upper()}
