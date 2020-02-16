@@ -62,6 +62,18 @@ SAVE AND QUIT             (S)
                 KeyErrorMessage("CURRENTLY NOT IMPLEMENTED")
 
     @staticmethod
+    def VictoryAndExit(mPlayer: Player) -> bool:
+        while True:
+            system(CLEAR)
+            print(f"PLAYER {mPlayer.name.upper()} HAS WON AFTER #{mPlayer.totalTurns} TURNS\n")
+            choice: str = GetUserChoice(AtVictory=True)
+            if choice == "C":
+                return False
+            if choice == "Q":
+                break
+        return True
+
+    @staticmethod
     def StartMenu() -> Tuple[List[Player], List[City], Dict[str, Train]]:
         while True:
             system(CLEAR)
@@ -72,6 +84,7 @@ QUIT              (Q)
     """)
             choice: str = GetUserChoice(inMainMenu=True)
             if choice == "Q":
+                system(CLEAR)
                 quit()
             if choice == "L":
                 KeyErrorMessage("CURRENTLY NOT IMPLEMENTED")
@@ -243,12 +256,18 @@ def GetConnectionInfo(player: Player, cities: List[City], fCity: City) -> Connec
     return cityList
 
 
-def GetUserChoice(inMainMenu: bool = False, inNonInteractiveMenu: bool = False) -> str:
+def GetUserChoice(
+        inMainMenu: bool = False,
+        inNonInteractiveMenu: bool = False,
+        AtVictory: bool = False
+    ) -> str:
     choice: str
     if inMainMenu:
         choice = input("ENTER KEY HERE: ")
     elif inNonInteractiveMenu:
         choice = input("ENTER 0 TO GO BACK: ")
+    elif AtVictory:
+        choice = input("ENTER C TO CONTINUE GAME.\nENTER Q TO QUIT")
     else:
         choice = input("ENTER KEY HERE (0 TO CANCEL): ")
     return choice.upper()

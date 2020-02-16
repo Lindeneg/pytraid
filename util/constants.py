@@ -1,3 +1,10 @@
+"""
+Author : Christian Lindeneg
+         https://github.com/Lindeneg
+Contact: christian@lindeneg.org
+Licence: Public Domain
+"""
+
 from os import path, name
 from typing import Tuple, Dict, Union, TypeVar, List
 
@@ -46,5 +53,6 @@ mLEVELS: Dict[int, Union[int, float]] = {
 
 InitialPlayerVals: Dict[str, int] = {
     "gold": 2000,
-    "distance": 150
+    "distance": 150,
+    "winning_gold": 15000
 }

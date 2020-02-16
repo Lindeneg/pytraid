@@ -6,10 +6,9 @@ Licence: Public Domain
 """
 
 from __future__ import annotations
-from typing import Optional, List, Dict, Tuple, Union
-from time import sleep
+from typing import Optional, List, Dict, Union
 
-from util.constants import Route, Cargo, Supply, DEPART, ARRIVE
+from util.constants import Route, Cargo, Supply, DEPART, ARRIVE, InitialPlayerVals
 from game.menu import Menu
 from player.player import Player
 from city.city import City
@@ -45,8 +44,8 @@ class Game:
         while True:
             mPlayer = self.__GetNextPlayer(mPlayer)
             if HasPlayerWon(mPlayer):
-                print("WON")
-                sleep(10)
+                if menu.VictoryAndExit(mPlayer):
+                    quit()
             HandlePlayerQueue(mPlayer)
             HandlePlayerRoutes(mPlayer)
             menu.Main(mPlayer)
@@ -67,7 +66,7 @@ class Game:
 
 
 def HasPlayerWon(mPlayer: Player) -> bool:
-    return False
+    return mPlayer.gold >= InitialPlayerVals["winning_gold"]
 
 
 def HandlePlayerQueue(mPlayer: Player) -> None:
