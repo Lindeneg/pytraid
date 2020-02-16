@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d33cd5b2-a86d-4937-9baf-3d76afbb4887" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\Christian\PycharmProjects\pytraid\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1X3YKyaK2EnXuyGUr5bxUkNYbzU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Christian\PycharmProjects\pytraid\game" />
+      <recent name="C:\Users\Christian\PycharmProjects\pytraid\supply" />
+      <recent name="C:\Users\Christian\PycharmProjects\pytraid\train" />
+      <recent name="C:\Users\Christian\PycharmProjects\pytraid\player" />
+      <recent name="C:\Users\Christian\PycharmProjects\pytraid\city" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d33cd5b2-a86d-4937-9baf-3d76afbb4887" name="Default Changelist" comment="" />
+      <created>1580276185008</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580276185008</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added an int to QueueType which represents the turn-cost">
+      <created>1580428112015</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1580428112015</updated>
+    </task>
+    <task id="LOCAL-00003" summary="simple json reader for initial testing">
+      <created>1580428151253</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580428151253</updated>
+    </task>
+    <task id="LOCAL-00004" summary="config change">
+      <created>1580428176996</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580428176996</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added a static method for generating cities">
+      <created>1580428207277</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1580428207277</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added some more constants">
+      <created>1580428221427</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1580428221427</updated>
+    </task>
+    <task id="LOCAL-00007" summary="testing">
+      <created>1580428243843</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1580428243843</updated>
+    </task>
+    <task id="LOCAL-00008" summary="adding start city list as well as dunder methods">
+      <created>1580675428414</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1580675428414</updated>
+    </task>
+    <task id="LOCAL-00009" summary="level/multiplier map">
+      <created>1580675443344</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1580675443344</updated>
+    </task>
+    <task id="LOCAL-00010" summary="city distance func, should probably be a city staticmethod">
+      <created>1580675468076</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1580675468076</updated>
+    </task>
+    <task id="LOCAL-00011" summary="some more testing">
+      <created>1580675480969</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1580675480969</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added main menu and begun on menu for creating new routes">
+      <created>1580675523675</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1580675523675</updated>
+    </task>
+    <task id="LOCAL-00013" summary="adding a few properties and a calculate cost method">
+      <created>1580675556189</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1580675556189</updated>
+    </task>
+    <task id="LOCAL-00014" summary="getters and dunders">
+      <created>1580675571927</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1580675571927</updated>
+    </task>
+    <task id="LOCAL-00015" summary="whoopsie">
+      <created>1580676623696</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1580676623696</updated>
+    </task>
+    <task id="LOCAL-00016" summary="static method to calculate distance between cities">
+      <created>1581531809064</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1581531809064</updated>
+    </task>
+    <task id="LOCAL-00017" summary="typevars">
+      <created>1581531822624</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1581531822624</updated>
+    </task>
+    <task id="LOCAL-00018" summary="few more trains">
+      <created>1581531834705</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1581531834705</updated>
+    </task>
+    <task id="LOCAL-00019" summary="adding a few main-game-loop functions">
+      <created>1581531882868</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1581531882868</updated>
+    </task>
+    <task id="LOCAL-00020" summary="routes can now be created">
+      <created>1581531919516</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1581531919516</updated>
+    </task>
+    <task id="LOCAL-00021" summary="moved">
+      <created>1581531953509</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1581531953509</updated>
+    </task>
+    <task id="LOCAL-00022" summary="adding connection and queue methods and attributes">
+      <created>1581531988350</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1581531988350</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Creating a new type Route">
+      <created>1581532007331</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1581532007331</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Adding keys (sName) to string-return methods">
+      <created>1581532061236</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1581532061236</updated>
+    </task>
+    <task id="LOCAL-00025" summary="moving train to own folder">
+      <created>1581532084453</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1581532084453</updated>
+    </task>
+    <task id="LOCAL-00026" summary="this is going to take ages in this tempo">
+      <created>1581532120532</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1581532120532</updated>
+    </task>
+    <task id="LOCAL-00027" summary="more words">
+      <created>1581532127877</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1581532127877</updated>
+    </task>
+    <task id="LOCAL-00028" summary="initial player values">
+      <created>1581824700609</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1581824700609</updated>
+    </task>
+    <task id="LOCAL-00029" summary="making game a class">
+      <created>1581824713513</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1581824713513</updated>
+    </task>
+    <task id="LOCAL-00030" summary="making menu.main a class method which takes a Game as an argument">
+      <created>1581824755015</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1581824755015</updated>
+    </task>
+    <task id="LOCAL-00031" summary="adding string representation">
+      <created>1581824777407</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1581824777407</updated>
+    </task>
+    <task id="LOCAL-00032" summary="reset route method for after editing a route">
+      <created>1581824804851</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1581824804851</updated>
+    </task>
+    <task id="LOCAL-00033" summary="static method that returns the train passed in as argument but as a new instance">
+      <created>1581824862114</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1581824862114</updated>
+    </task>
+    <task id="LOCAL-00034" summary="initating game">
+      <created>1581824884947</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1581824884947</updated>
+    </task>
+    <task id="LOCAL-00035" summary="adding units to __repr__">
+      <created>1581829529804</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1581829529804</updated>
+    </task>
+    <task id="LOCAL-00036" summary="adding units to __repr__">
+      <created>1581829540748</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1581829540748</updated>
+    </task>
+    <task id="LOCAL-00037" summary="adding units to __repr__ and changing name property">
+      <created>1581829573724</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1581829573724</updated>
+    </task>
+    <task id="LOCAL-00038" summary="adding equality operator">
+      <created>1581829597805</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1581829597805</updated>
+    </task>
+    <task id="LOCAL-00039" summary="implemented a start menu">
+      <created>1581829635569</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1581829635569</updated>
+    </task>
+    <task id="LOCAL-00040" summary="initiate a new game">
+      <created>1581829652854</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1581829652854</updated>
+    </task>
+    <task id="LOCAL-00041" summary="setup a new game">
+      <created>1581829666227</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1581829666227</updated>
+    </task>
+    <task id="LOCAL-00042" summary="adding FileType">
+      <created>1581867431830</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1581867431830</updated>
+    </task>
+    <task id="LOCAL-00043" summary="implementing a file manager">
+      <created>1581867449688</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1581867449688</updated>
+    </task>
+    <task id="LOCAL-00044" summary="savegame method">
+      <created>1581867466282</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1581867466282</updated>
+    </task>
+    <task id="LOCAL-00045" summary="savegame and loadgame methods">
+      <created>1581867489669</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1581867489669</updated>
+    </task>
+    <task id="LOCAL-00046" summary="update readme">
+      <created>1581869169941</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1581869169941</updated>
+    </task>
+    <task id="LOCAL-00047" summary="todo's">
+      <created>1581869190185</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1581869190185</updated>
+    </task>
+    <task id="LOCAL-00048" summary="more words">
+      <created>1581869201635</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1581869201635</updated>
+    </task>
+    <task id="LOCAL-00049" summary="conflict">
+      <created>1581869243281</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1581869243281</updated>
+    </task>
+    <task id="LOCAL-00050" summary="readme update">
+      <created>1581869301264</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1581869301265</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Adding keys (sName) to string-return methods" />
+    <MESSAGE value="moving train to own folder" />
+    <MESSAGE value="this is going to take ages in this tempo" />
+    <MESSAGE value="initial player values" />
+    <MESSAGE value="making game a class" />
+    <MESSAGE value="making menu.main a class method which takes a Game as an argument" />
+    <MESSAGE value="adding string representation" />
+    <MESSAGE value="reset route method for after editing a route" />
+    <MESSAGE value="static method that returns the train passed in as argument but as a new instance" />
+    <MESSAGE value="initating game" />
+    <MESSAGE value="adding units to __repr__" />
+    <MESSAGE value="adding units to __repr__ and changing name property" />
+    <MESSAGE value="adding equality operator" />
+    <MESSAGE value="implemented a start menu" />
+    <MESSAGE value="initiate a new game" />
+    <MESSAGE value="setup a new game" />
+    <MESSAGE value="adding FileType" />
+    <MESSAGE value="implementing a file manager" />
+    <MESSAGE value="savegame method" />
+    <MESSAGE value="savegame and loadgame methods" />
+    <MESSAGE value="update readme" />
+    <MESSAGE value="todo's" />
+    <MESSAGE value="more words" />
+    <MESSAGE value="conflict" />
+    <MESSAGE value="readme update" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme update" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580365002921">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1580365002921" />
+    <state x="719" y="323" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581206124848">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="719" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581206124848" />
+    <state x="709" y="357" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1581276787329">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="709" y="357" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581276787329" />
+    <state x="-1230" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581531596302">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1230" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1581531596302" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1580339364031" />
+    <state x="271" y="41" width="1330" height="807" key="CommitChangelistDialog2" timestamp="1581869299683">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="271" y="41" width="1330" height="807" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581869299683" />
+    <state x="160" y="16" key="DiffContextDialog" timestamp="1581835908384">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="160" y="16" key="DiffContextDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581835908384" />
+    <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1581280048081">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581280048081" />
+    <state width="1876" height="656" key="GridCell.Tab.0.bottom" timestamp="1581280026653">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="656" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581280026653" />
+    <state width="1876" height="656" key="GridCell.Tab.0.center" timestamp="1581280026653">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="656" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581280026653" />
+    <state width="1876" height="656" key="GridCell.Tab.0.left" timestamp="1581280026653">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="656" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581280026653" />
+    <state width="1876" height="656" key="GridCell.Tab.0.right" timestamp="1581280026653">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="656" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581280026653" />
+    <state width="1876" height="206" key="GridCell.Tab.1.bottom" timestamp="1580538496052">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="206" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1580538496052" />
+    <state width="1876" height="206" key="GridCell.Tab.1.center" timestamp="1580538496052">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="206" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1580538496052" />
+    <state width="1876" height="206" key="GridCell.Tab.1.left" timestamp="1580538496052">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="206" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1580538496052" />
+    <state width="1876" height="206" key="GridCell.Tab.1.right" timestamp="1580538496052">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="206" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1580538496052" />
+    <state x="807" y="436" key="VCS.ChangelistChooser" timestamp="1581824869329">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="807" y="436" key="VCS.ChangelistChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581824869329" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1581869878938">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581869878937" />
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1581869482171">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581869482171" />
+    <state x="741" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1581869801599">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="741" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581869801599" />
+    <state x="698" y="312" key="git4idea.merge.GitPullDialog" timestamp="1581695026044">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="698" y="312" key="git4idea.merge.GitPullDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581695026044" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1581868469009">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581868469009" />
+  </component>
+</project>
