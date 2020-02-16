@@ -1,3 +1,10 @@
+"""
+Author : Christian Lindeneg
+         https://github.com/Lindeneg
+Contact: christian@lindeneg.org
+Licence: Public Domain
+"""
+
 from __future__ import annotations
 from typing import List, Union, Callable
 
@@ -67,7 +74,7 @@ class Route:
 
     @property
     def name(self) -> str:
-        return f"{self.departCity.sName} | {self.arriveCity.sName}"
+        return f"\'{self.departCity.name.upper()}<->{self.arriveCity.name.upper()}\'"
 
     def Reset(self) -> None:
         self.currentCity = [False, self.departCity]
@@ -100,7 +107,7 @@ KEY              : {self.mID}
         return f"""
 DEPART   : {self.departCity.name.upper()}
 ARRIVE   : {self.arriveCity.name.upper()}
-DISTANCE : {self.distance}
-COST     : {self.cost}
+DISTANCE : {self.distance}KM
+COST     : {self.cost}G
 TRAIN    : {self.train.name.upper()}
 """
