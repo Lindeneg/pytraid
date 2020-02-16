@@ -5,23 +5,33 @@ Contact: christian@lindeneg.org
 Licence: Public Domain
 """
 
-import json
-import pickle
-from typing import Dict, List, Union, TypeVar, Optional
+from json import load as jLoad
+from pickle import load as pLoad
+from pickle import dump as pDump
+from typing import Dict, List, Tuple, Union, TypeVar, Callable, TextIO, Optional
+
+Game = TypeVar("Game")
+FileType = Dict[str, Union[List[Dict[str, Union[int, float, str, List[str]]]], Game]]
 
 
-ReadType = Dict[str, List[Dict[str, Union[int, float, str, List[str]]]]]
-
-# TODO Generalise ReadJSON
-
-
-def ReadJSON(path) -> Union[ReadType, None]:
-    with open(path, "r") as mFile:
-        mData: Optional[ReadType] = json.load(mFile)
-        mFile.close()
+def FileManager(args: Tuple[str, str], data: Optional[Game] = None) -> Optional[FileType]:
+    path: str
+    name: str
+    flag: str
+    method: Callable
+    mData: Optional[Game] = None
+    GetMethod: Callable = lambda yData, yName: ["r", jLoad] if name[-4:].lower() == "json" \
+        else (["wb", pDump] if yData else ["rb", pLoad])
+    path, name = args
+    flag, method = GetMethod(data, name)
+    mFile: TextIO
+    try:
+        with open(f"{path}/{name}", flag) as mFile:
+            if data:
+                method(data, mFile)
+            else:
+                mData = method(mFile)
+            mFile.close()
+    except FileNotFoundError:
+        pass  # Returns None
     return mData
-
-
-
-
-
