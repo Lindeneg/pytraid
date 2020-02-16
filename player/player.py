@@ -1,6 +1,6 @@
-from typing import Union, List
+from typing import Union, List, Any
 
-from util.constants import mLEVELS, City, Connection, Supply, Route, Train, Queue, FinanceList
+from util.constants import mLEVELS, City, Connection, Supply, Route, Train, Queue, FinanceList, InitialPlayerVals
 from route.route import Route
 
 
@@ -9,8 +9,8 @@ class Player:
             self,
             name: str,
             startCity: City,
-            startGold: int = 1000,
-            startDistance: int = 200
+            startGold: int = InitialPlayerVals["gold"],
+            startDistance: int = InitialPlayerVals["distance"]
     ) -> None:
         self.__name: str = name
         self.__gold: int = startGold
@@ -19,7 +19,10 @@ class Player:
         self.__level: int = 1
         self.__buildQueue: Queue = []
         self.__connections: Connection = []
-        self.__turnFinance: FinanceList = {"income": [], "expense": []}
+        self.__turnFinance: FinanceList = {
+            "income": [],
+            "expense": []
+        }
         self.__totalTurns: int = 1
         self.__startCity: City = startCity
 
@@ -75,6 +78,7 @@ class Player:
         self.__connections.append(route)
 
     def AddIncome(self, thatFinance: Supply) -> None:
+        thisFinance: List[Union[int, Supply]]
         for thisFinance in self.turnFinance["income"]:
             if thisFinance[1] == thatFinance:
                 thisFinance[0] += 1
@@ -94,6 +98,7 @@ class Player:
         self.__turnFinance["expense"].clear()
 
     def RemoveConnection(self, route: Route) -> None:
+        i: int
         for i in range(len(self.__connections)):
             mRoute: Route = self.__connections[i]
             if mRoute.mID == route.mID:
@@ -104,13 +109,13 @@ class Player:
             return 2
         return 1
 
-    def CalculateDistanceCost(self, distance) -> int:
+    def CalculateDistanceCost(self, distance: int) -> int:
         return int(distance * mLEVELS[self.__level])
 
-    # Todo Implement Player methods
-    # GetGold
-    # GetConnections
-    # GetQueue
-    # GetFinances
-
-
+    def __repr__(self) -> str:
+        return f"""
+NAME       : {self.name.upper()}
+GOLD       : {self.gold}G
+CONNECTIONS: {len(self.connections)}
+BUILD QUEUE: {len(self.queue)}
+"""
