@@ -1,4 +1,5 @@
-from typing import Optional, List, Union
+from typing import Optional, List, Dict, Union
+from time import sleep
 
 from util.constants import Route, Cargo, Supply, DEPART, ARRIVE
 from game.menu import Menu
@@ -6,42 +7,68 @@ from player.player import Player
 from city.city import City
 from train.train import Train
 
-cities = City.GenerateCityList()
-trains = Train.GenerateTrainsDict()
-startCities = City.GetStartCities()
+
+class Game:
+    def __init__(
+            self,
+            players: List[Player],
+            cities: List[City],
+            trains: Dict[str, Train]
+    ) -> None:
+        self.__players: List[Player] = players
+        self.__cities: List[City] = cities
+        self.__trains: Dict[str, Train] = trains
+
+    @property
+    def players(self) -> List[Player]:
+        return self.__players
+
+    @property
+    def cities(self) -> List[City]:
+        return self.__cities
+
+    @property
+    def trains(self) -> Dict[str, Train]:
+        return self.__trains
+
+    def StartGame(self) -> None:
+        mPlayer: Optional[Player] = None
+        menu: Menu = Menu(self)
+        while True:
+            mPlayer = self.__GetNextPlayer(mPlayer)
+            if HasPlayerWon(mPlayer):
+                print("WON")
+                sleep(10)
+            HandlePlayerQueue(mPlayer)
+            HandlePlayerRoutes(mPlayer)
+            menu.Main(mPlayer)
+            HandlePlayerIncome(mPlayer)
+            HandlePlayerAttributes(mPlayer)
+            mPlayer.ClearTurnFinance()
+            mPlayer.IncrementTurns()
+
+    def __GetNextPlayer(self, mPlayer: Optional[Player]) -> Player:
+        if not mPlayer or self.players.index(mPlayer) == len(self.players) - 1:
+            return self.players[0]
+        return self.players[self.players.index(mPlayer) + 1]
 
 
-player = Player("Christian", startCities[1])
-player2 = Player("Far", startCities[0])
-players = [player, player2]
-
-
-def Game() -> None:  # TODO: Make into Game Class: init: players, cities and trains
-    mPlayer: Optional[Player] = None
-    while True:
-        mPlayer = GetNextPlayer(mPlayer)
-        HandlePlayerQueue(mPlayer)
-        HandlePlayerRoutes(mPlayer)
-        Menu.Main(mPlayer, cities, trains)  # TODO: Make Menu.Main() non-static and initiate it with an instance of Game
-        mPlayer.ClearTurnFinance()
-        mPlayer.IncrementTurns()
-
-
-def GetNextPlayer(mPlayer: Optional[Player]) -> Player:
-    if not mPlayer:
-        return players[0]
-    if players.index(mPlayer) == len(players) - 1:
-        return players[0]
-    return players[players.index(mPlayer) + 1]
+def HasPlayerWon(mPlayer: Player) -> bool:
+    return False
 
 
 def HandlePlayerQueue(mPlayer: Player) -> None:
     if len(mPlayer.queue) < 1:
         return
     i: int
+    turnCost: int
+    route: Route
     for i in range(len(mPlayer.queue)):
-        turnCost: int = mPlayer.queue[i][0]
-        route: Route = mPlayer.queue[i][1]
+        try:
+            turnCost, route = mPlayer.queue[i]
+        except IndexError:
+            i = len(mPlayer.queue) - 1
+            turnCost, route = mPlayer.queue[i]
         if turnCost <= 0:
             mPlayer.connections.append(route)
             mPlayer.queue.pop(i)
