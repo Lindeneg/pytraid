@@ -8,7 +8,7 @@ Licence: Public Domain
 from os import path, name
 from typing import Tuple, Dict, Union, TypeVar, List
 
-from util.file_manager import ReadJSON, ReadType
+from util.file_manager import FileManager, FileType
 
 City = TypeVar("City")
 Player = TypeVar("Player")
@@ -38,7 +38,7 @@ DEMAND: str = "demand"
 DEPART: str = "departure"
 ARRIVE: str = "arrival"
 
-gameData: ReadType = ReadJSON(f"{DATA_PATH}/data.json")
+gameData: FileType = FileManager((DATA_PATH, "data.json"))
 SUPPLIES: List[Dict[str, Union[int, str]]] = gameData["supplies"]
 CITIES: List[Dict[str, Union[int, float, str, List[str]]]] = gameData["cities"]
 TRAINS: List[Dict[str, Union[int, str]]] = gameData["trains"]
