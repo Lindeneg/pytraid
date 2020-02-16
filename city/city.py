@@ -1,3 +1,10 @@
+"""
+Author : Christian Lindeneg
+         https://github.com/Lindeneg
+Contact: christian@lindeneg.org
+Licence: Public Domain
+"""
+
 from __future__ import annotations
 from typing import Tuple, List, Dict, Union
 from math import sin, cos, sqrt, atan2, radians
