@@ -11,7 +11,8 @@ from typing import Optional, List, Dict, Union, Tuple, Callable
 from random import randint
 
 from supply.supply import Supply
-from util.constants import CLEAR, ConnectionInfo, DEPART, ARRIVE, Game
+from util.constants import SAVE_PATH, viewDir, CLEAR, ConnectionInfo, DEPART, ARRIVE, Game
+from util.file_manager import FileManager
 from player.player import Player
 from city.city import City
 from train.train import Train
@@ -59,7 +60,7 @@ SAVE AND QUIT             (S)
             elif choice == "Q":
                 break
             elif choice == "S":
-                KeyErrorMessage("CURRENTLY NOT IMPLEMENTED")
+                SaveGame(self.game)
 
     @staticmethod
     def VictoryAndExit(mPlayer: Player) -> bool:
@@ -74,7 +75,7 @@ SAVE AND QUIT             (S)
         return True
 
     @staticmethod
-    def StartMenu() -> Tuple[List[Player], List[City], Dict[str, Train]]:
+    def StartMenu() -> Union[Tuple[List[Player], List[City], Dict[str, Train]], Callable]:
         while True:
             system(CLEAR)
             print(f"""
@@ -84,25 +85,52 @@ QUIT              (Q)
     """)
             choice: str = GetUserChoice(inMainMenu=True)
             if choice == "Q":
-                system(CLEAR)
-                quit()
+                Menu.Goodbye()
             if choice == "L":
-                KeyErrorMessage("CURRENTLY NOT IMPLEMENTED")
+                return LoadGame()
             if choice == "N":
-                mPlayer: Player
-                yPlayer: Player
                 cities: List[City] = City.GenerateCityList()
                 trains: Dict[str, Train] = Train.GenerateTrainsDict()
                 startCities: List[City] = City.GetStartCities()
-                system(CLEAR)
-                name: str = input("ENTER YOUR NAME: ")
-                mPlayer, startCities = StartCityPlayer(startCities, name)
-                yPlayer, startCities = StartCityPlayer(startCities, "TestOpponent")
-                players: List[Player] = [mPlayer, yPlayer]
+                players: List[Player] = GetPlayers(startCities)
                 return players, cities, trains
 
+    @staticmethod
+    def Goodbye():
+        KeyErrorMessage("THANKS FOR PLAYING")
+        system(CLEAR)
+        exit()
 
-def StartCityPlayer(mStartCities: List[City], name: str) -> Tuple[Player, List[City]]:
+
+def LoadGame() -> Game:
+    system(CLEAR)
+    print("SAVED GAMES:\n")
+    system(f"{viewDir} {SAVE_PATH}")
+    choice: str = input("\nPLEASE ENTER NAME FOR THE GAME TO LOAD\n\nENTER HERE: ")
+    game: Optional[Game] = FileManager((SAVE_PATH, choice.lower()))
+    if not game:
+        KeyErrorMessage(f"GAME \'{choice.upper()}\' COULD NOT BE FOUND, TRY AGAIN")
+        LoadGame()
+    else:
+        return game
+
+
+def SaveGame(game: Game) -> None:
+    system(CLEAR)
+    choice: str = input("PLEASE ENTER A NAME FOR THE SAVED GAME\n\nENTER HERE: ")
+    game.SaveGame(choice.lower())
+    Menu.Goodbye()
+
+
+def GetPlayers(mStartCities: List[City]) -> List[Player]:
+    system(CLEAR)
+    name: str = input("ENTER YOUR NAME: ")
+    mPlayer, mStartCities = GetPlayerStartCity(mStartCities, name)
+    yPlayer, mStartCities = GetPlayerStartCity(mStartCities, "TestOpponent")  # TODO Create Opponent
+    return [mPlayer, yPlayer]
+
+
+def GetPlayerStartCity(mStartCities: List[City], name: str) -> Tuple[Player, List[City]]:
     i: int = randint(0, len(mStartCities) - 1)
     player: Player = Player(name, mStartCities[i])
     mStartCities.pop(i)
