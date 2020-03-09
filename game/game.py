@@ -8,12 +8,13 @@ Licence: Public Domain
 from __future__ import annotations
 from typing import Optional, List, Dict, Tuple, Union
 
-from util.constants import SAVE_PATH, Route, Cargo, Supply, DEPART, ARRIVE, InitialPlayerVals # type: ignore[import]
+from util.constants import SAVE_PATH, Route, Cargo, DEPART, ARRIVE, InitialPlayerVals # type: ignore[import]
 from util.file_manager import FileManager # type: ignore[import]
 from game.menu import Menu # type: ignore[import]
 from player.player import Player # type: ignore[import]
 from city.city import City # type: ignore[import]
 from train.train import Train # type: ignore[import]
+from supply.supply import Supply
 
 
 class Game:
@@ -130,7 +131,7 @@ def HandlePlayerIncome(mPlayer: Player) -> None:
     income: int = 0
     i: List[Union[int, Supply]]
     for i in mPlayer.turnFinance["income"]:
-        if isinstance(i[1], Supply) and isinstance(i[0], int):
+        if isinstance(i[1], Supply):
             income += i[0] * i[1].value
     mPlayer.gold = mPlayer.gold + income
 

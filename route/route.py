@@ -8,7 +8,8 @@ Licence: Public Domain
 from __future__ import annotations
 from typing import List, Union, Callable
 
-from util.constants import City, DEPART, ARRIVE # type: ignore[import]
+from util.constants import DEPART, ARRIVE # type: ignore[import]
+from city.city import City # type: ignore[import]
 from train.train import Train # type: ignore[import]
 
 

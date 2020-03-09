@@ -470,10 +470,10 @@ def ViewFinances(player: Player) -> None:
         else:
             expense: List[Union[int, Train, Route]]
             for expense in player.turnFinance["expense"]:
-                if isinstance(expense[1], Route) and isinstance(expense[0], int):
+                if isinstance(expense[1], Train) and isinstance(expense[0], int):
                     total -= (expense[0] * expense[1].maintenance)
                     print(f"{expense[0] * expense[1].maintenance}G FOR {expense[0]} X {expense[1].name.upper()} MAINTENANCE\n")
-                elif isinstance(expense[1], Train) and isinstance(expense[0], int):
+                elif isinstance(expense[1], Route) and isinstance(expense[0], int):
                     total -= (expense[0] * expense[1].cost)
                     print(f"{expense[0] * expense[1].cost}G FOR {expense[1].name.upper()} ROUTE\n")
                 else:
