@@ -8,7 +8,7 @@ Licence: Public Domain
 from json import load as jLoad
 from pickle import load as pLoad
 from pickle import dump as pDump
-from typing import Dict, List, Tuple, Union, TypeVar, Callable, TextIO, Optional
+from typing import Dict, List, Tuple, Union, TypeVar, Callable, IO, Any, Optional
 
 Game = TypeVar("Game")
 FileType = Dict[str, Union[List[Dict[str, Union[int, float, str, List[str]]]], Game]]
@@ -19,12 +19,12 @@ def FileManager(args: Tuple[str, str], data: Optional[Game] = None) -> Optional[
     name: str
     flag: str
     method: Callable
-    mData: Optional[Game] = None
+    mData: Optional[FileType] = None
     GetMethod: Callable = lambda yData, yName: ["r", jLoad] if name[-4:].lower() == "json" \
         else (["wb", pDump] if yData else ["rb", pLoad])
     path, name = args
     flag, method = GetMethod(data, name)
-    mFile: TextIO
+    mFile: IO[Any]
     try:
         with open(f"{path}/{name}", flag) as mFile:
             if data:

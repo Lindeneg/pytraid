@@ -8,8 +8,8 @@ Licence: Public Domain
 from __future__ import annotations
 from typing import Union, List
 
-from util.constants import mLEVELS, City, Connection, Supply, Route, Train, Queue, FinanceList, InitialPlayerVals
-from route.route import Route
+from util.constants import mLEVELS, City, Connection, Supply, Route, Train, Queue, FinanceList, InitialPlayerVals # type: ignore[import]
+from route.route import Route # type: ignore[import]
 
 
 class Player:  # TODO 3 | 5
@@ -120,7 +120,9 @@ class Player:  # TODO 3 | 5
     def CalculateDistanceCost(self, distance: int) -> int:
         return int(distance * mLEVELS[self.__level])
 
-    def __eq__(self, other: Player):
+    def __eq__(self, other: object):
+        if not isinstance(other, Player):
+            raise TypeError("Cannot compare Player object with non-Player object")
         return self.name == other.name
 
     def __repr__(self) -> str:

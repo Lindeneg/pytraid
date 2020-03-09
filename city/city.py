@@ -9,8 +9,8 @@ from __future__ import annotations
 from typing import Tuple, List, Dict, Union
 from math import sin, cos, sqrt, atan2, radians
 
-from supply.supply import Supply
-from util.constants import SUPPLY, DEMAND, CITIES, SUPPLIES
+from supply.supply import Supply # type: ignore[import]
+from util.constants import SUPPLY, DEMAND, CITIES, SUPPLIES # type: ignore[import]
 
 START_CITIES: List[City] = []
 
@@ -82,7 +82,7 @@ KEY     : {self.sName.upper()}
                     SUPPLIES[i]["value"],
                     SUPPLIES[i]["weight"],
                     SUPPLY
-                ) for i in range(len(SUPPLIES)) if SUPPLIES[i]["name"] in city["supply"]
+                ) for i in range(len(SUPPLIES)) if SUPPLIES[i]["name"] in city["supply"] # type: ignore[operator]
             ]
             mDemands: List[Supply] = [
                 Supply(
@@ -90,10 +90,10 @@ KEY     : {self.sName.upper()}
                     SUPPLIES[i]["value"],
                     SUPPLIES[i]["weight"],
                     DEMAND
-                ) for i in range(len(SUPPLIES)) if SUPPLIES[i]["name"] in city["demand"]
+                ) for i in range(len(SUPPLIES)) if SUPPLIES[i]["name"] in city["demand"] # type: ignore[operator]
             ]
-            mCity = City(city["name"], city["phi"], city["gamma"], city["size"], mSupplies, mDemands)
-            if int(city["size"]) == 1:
+            mCity = City(city["name"], city["phi"], city["gamma"], city["size"], mSupplies, mDemands) # type: ignore[arg-type]
+            if mCity.size == 1:
                 START_CITIES.append(mCity)
             mCities.append(mCity)
         return mCities
@@ -113,8 +113,10 @@ KEY     : {self.sName.upper()}
         c: float = 2 * atan2(sqrt(abs(a)), sqrt(abs(1 - a)))
         return int(R * c)
 
-    def __eq__(self, otherCity: City) -> bool:
-        return self.name == otherCity.name
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, City):
+            raise TypeError("Cannot compare City object with non-City object")
+        return self.name == other.name
 
     def __repr__(self) -> str:
         return f"""

@@ -56,8 +56,10 @@ VALUE : {self.value}G
 WEIGHT: {self.weight}T
 """
 
-    def __eq__(self, otherSupply: Supply) -> bool:
-        return self.name == otherSupply.name
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Supply):
+            raise TypeError("Cannot compare Supply object with non-Supply object")
+        return self.name == other.name
 
     def __repr__(self) -> str:
         return f"[ {self.name.upper()}, {self.value}G, {self.weight}T ]  "

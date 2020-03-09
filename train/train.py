@@ -8,7 +8,7 @@ Licence: Public Domain
 from __future__ import annotations
 from typing import Dict
 
-from util.constants import TRAINS, Cargo
+from util.constants import TRAINS, Cargo # type: ignore[import]
 
 
 class Train:
@@ -77,7 +77,9 @@ class Train:
     def GetTrain(train: Train) -> Train:
         return Train(train.name, train.price, train.maintenance, train.speed, train.cargoSpace)
 
-    def __eq__(self, other: Train) -> bool:
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Train):
+            raise TypeError("Cannot compare Train object with non-Train object")
         return self.name == other.name
 
     def __repr__(self) -> str:

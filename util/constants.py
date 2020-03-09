@@ -8,7 +8,7 @@ Licence: Public Domain
 from os import path, name
 from typing import Tuple, Dict, Union, TypeVar, List
 
-from util.file_manager import FileManager, FileType
+from util.file_manager import FileManager, FileType # type: ignore[import]
 
 City = TypeVar("City")
 Player = TypeVar("Player")
@@ -27,8 +27,8 @@ if name.lower() == "nt":
     CLEAR: str = "cls"
     viewDir: str = "dir /b"
 else:
-    CLEAR: str = "clear"
-    viewDir: str = "ls"
+    CLEAR: str = "clear" # type: ignore[no-redef]
+    viewDir: str = "ls" # type: ignore[no-redef]
 
 SAVE_PATH: Union[bytes, str] = path.join(path.dirname(__file__), '..', "saves")
 DATA_PATH: Union[bytes, str] = path.join(path.dirname(__file__), '..', "data")

@@ -10,13 +10,101 @@ from time import sleep
 from typing import Optional, List, Dict, Union, Tuple, Callable
 from random import randint
 
-from supply.supply import Supply
-from util.constants import SAVE_PATH, viewDir, CLEAR, ConnectionInfo, DEPART, ARRIVE, Game
-from util.file_manager import FileManager
-from player.player import Player
-from city.city import City
-from train.train import Train
-from route.route import Route
+from supply.supply import Supply # type: ignore[import]
+from util.constants import SAVE_PATH, viewDir, CLEAR, ConnectionInfo, DEPART, ARRIVE, Game # type: ignore[import]
+from util.file_manager import FileManager # type: ignore[import]
+from player.player import Player # type: ignore[import]
+from city.city import City # type: ignore[import]
+from train.train import Train # type: ignore[import]
+from route.route import Route # type: ignore[import]
+
+
+noCargoTrain = '''
+      ___ _________
+ _][__|o| |O O O O|
+<_______|-|_______|
+ /O-O-O     o   o
+*********************
+'''
+
+SingleCargoTrain = '''
+
+        ____          
+ ][_n_i_| (   ooo___  
+(__________|_[______]
+  0--0--0      0  0 
+*********************
+'''
+
+DoubleCargoTrain = '''
+                      ___________________________________
+        ____          |                 | |             |
+ ][_n_i_| (   ooo___  |                 | |             |
+(__________|_[______]_|_________________|_|_____________|
+  0--0--0      0  0    0               0   0            0
+**********************************************************
+'''
+
+underwayTrain = '''
+                                              ooooo
+                                            oooo
+                                          oooo
+                                        oooo
+                                       oo
+                                      o  _____ 
+                                     II__|[] |
+                                    |        |_|_
+                                   < OO----OOO  
+**************************************************
+'''
+
+depotTrain = '''
+                                                     ___
+                                             ___..--'  .`.
+                                    ___...--'     -  .` `.`.
+                           ___...--' _      -  _   .` -   `.`.
+                  ___...--'  -       _   -       .`  `. - _ `.`.
+           __..--'_______________ -         _  .`  _   `.   - `.`.
+        .`    _ /\    -        .`      _     .`__________`. _  -`.`.
+      .` -   _ /  \_     -   .`  _         .` |Train Depot|`.   - `.`.
+    .`-    _  /   /\   -   .`        _   .`   |___________|  `. _   `.`.
+  .`________ /__ /_ \____.`____________.`     ___       ___  - `._____`|
+    |   -  __  -|    | - |  ____  |   | | _  |   |  _  |   |  _ |
+    | _   |  |  | -  |   | |.--.| |___| |    |___|     |___|    |
+    |     |--|  |    | _ | |'--'| |---| |   _|---|     |---|_   |
+    |   - |__| _|  - |   | |.--.| |   | |    |   |_  _ |   |    |
+ ---``--._      |    |   |=|'--'|=|___|=|====|___|=====|___|====|
+ -- . ''  ``--._| _  |  -|_|.--.|_______|_______________________|
+`--._           '--- |_  |:|'--'|:::::::|:::::::::::::::::::::::|
+_____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
+----------`--._          ''      ``--.._|:::::::::::::::::::::::|
+`--._ _________`--._'        --     .   ''-----.................|
+     `--._----------`--._.  _           -- . :''           -    ''
+          `--._ _________`--._ :'              -- . :''      -- . ''
+ -- . ''       `--._ ---------`--._   -- . :''
+          :'        `--._ _________`--._:'  -- . ''      -- . ''
+  -- . ''     -- . ''    `--._----------`--._      -- . ''     -- . ''
+                              `--._ _________`--._
+ -- . ''           :'              `--._ ---------`--._-- . ''    -- . ''
+          -- . ''       -- . ''         `--._ _________`--._   -- . ''
+:'                 -- . ''          -- . ''  `--._----------`--._
+'''
+
+logoTrain = '''
+########################## WELCOME TO ##########################
+##########################   PYTRAID  ##########################
+
+
+                            P  Y  T  R A
+                       ,_____  ____    I
+                       |     \_|[]|_'__D
+                       |_______|__|_|__|}
+=======================oo--oo==oo--OOO\\========================
+
+################################################################
+################# https://github.com/lindeneg ##################
+################################################################
+'''
 
 
 class Menu:
@@ -179,10 +267,11 @@ AVAILABLE CONNECTIONS
                                 break
                             AddCargoToTrain(train, fCity, city, DEPART)
                             AddCargoToTrain(train, city, fCity, ARRIVE)
+                            route: Route
                             if len(player.connections) > 1:
-                                route: Route = Route(len(player.connections)+1, fCity, city, train, distance, totalCost)
+                                route = Route(len(player.connections)+1, fCity, city, train, distance, totalCost)
                             else:
-                                route: Route = Route(len(player.queue)+1, fCity, city, train, distance, totalCost)
+                                route = Route(len(player.queue)+1, fCity, city, train, distance, totalCost)
                             if HasCappedRoutes(player, route):
                                 KeyErrorMessage(f"YOU ALREADY HAVE THE MAXIMUM AMOUNT OF THIS ROUTE: {route.name}")
                             else:
@@ -329,7 +418,7 @@ def EditRoute(player: Player) -> None:
     while True:
         system(CLEAR)
         print("EDITABLE ROUTES:")
-        [print(route.KeyString()) for route in player.connections]
+        [print(route.KeyString()) for route in player.connections] # type: ignore[func-returns-value]
         choice: str = GetUserChoice()
         if choice == "0":
             break
@@ -369,20 +458,27 @@ def ViewFinances(player: Player) -> None:
         else:
             income: List[Union[int, Supply]]
             for income in player.turnFinance["income"]:
-                total += (income[0] * income[1].value)
-                print(f"{income[0] * income[1].value}G FOR {income[0]} X {income[1].name.upper()}\n")
+                if isinstance(income[1], Supply) and isinstance(income[0], int):
+                    total += (income[0] * income[1].value)
+                    print(f"{income[0] * income[1].value}G FOR {income[0]} X {income[1].name.upper()}\n")
+                else:
+                    # TODO Print Error
+                    print()
         print("EXPENSE\n")
         if len(player.turnFinance["expense"]) < 1:
             print("NO EXPENSES THIS TURN\n")
         else:
             expense: List[Union[int, Train, Route]]
             for expense in player.turnFinance["expense"]:
-                if not expense[1].IsRoute:
+                if isinstance(expense[1], Route) and isinstance(expense[0], int):
                     total -= (expense[0] * expense[1].maintenance)
                     print(f"{expense[0] * expense[1].maintenance}G FOR {expense[0]} X {expense[1].name.upper()} MAINTENANCE\n")
-                else:
+                elif isinstance(expense[1], Train) and isinstance(expense[0], int):
                     total -= (expense[0] * expense[1].cost)
                     print(f"{expense[0] * expense[1].cost}G FOR {expense[1].name.upper()} ROUTE\n")
+                else:
+                    # TODO Print Error
+                    print()
         print("TOTAL\n")
         print(f"{total}G\n")
         choice: str = GetUserChoice(inNonInteractiveMenu=True)
@@ -392,7 +488,7 @@ def ViewFinances(player: Player) -> None:
 
 def ViewOpponent(mPlayer: Player, players: List[Player]) -> None:
     system(CLEAR)
-    [print(player) for player in players if not player == mPlayer]
+    [print(player) for player in players if not player == mPlayer] # type: ignore[func-returns-value]
     GetUserChoice(inNonInteractiveMenu=True)
     return
 
@@ -401,92 +497,3 @@ def KeyErrorMessage(msg: str) -> None:
     system(CLEAR)
     print(f"{msg}")
     sleep(2)
-
-
-noCargoTrain = '''
-      ___ _________
- _][__|o| |O O O O|
-<_______|-|_______|
- /O-O-O     o   o
-*********************
-'''
-
-SingleCargoTrain = '''
-
-        ____          
- ][_n_i_| (   ooo___  
-(__________|_[______]
-  0--0--0      0  0 
-*********************
-'''
-
-DoubleCargoTrain = '''
-                      ___________________________________
-        ____          |                 | |             |
- ][_n_i_| (   ooo___  |                 | |             |
-(__________|_[______]_|_________________|_|_____________|
-  0--0--0      0  0    0               0   0            0
-**********************************************************
-'''
-
-underwayTrain = '''
-                                              ooooo
-                                            oooo
-                                          oooo
-                                        oooo
-                                       oo
-                                      o  _____ 
-                                     II__|[] |
-                                    |        |_|_
-                                   < OO----OOO  
-**************************************************
-'''
-
-depotTrain = '''
-                                                     ___
-                                             ___..--'  .`.
-                                    ___...--'     -  .` `.`.
-                           ___...--' _      -  _   .` -   `.`.
-                  ___...--'  -       _   -       .`  `. - _ `.`.
-           __..--'_______________ -         _  .`  _   `.   - `.`.
-        .`    _ /\    -        .`      _     .`__________`. _  -`.`.
-      .` -   _ /  \_     -   .`  _         .` |Train Depot|`.   - `.`.
-    .`-    _  /   /\   -   .`        _   .`   |___________|  `. _   `.`.
-  .`________ /__ /_ \____.`____________.`     ___       ___  - `._____`|
-    |   -  __  -|    | - |  ____  |   | | _  |   |  _  |   |  _ |
-    | _   |  |  | -  |   | |.--.| |___| |    |___|     |___|    |
-    |     |--|  |    | _ | |'--'| |---| |   _|---|     |---|_   |
-    |   - |__| _|  - |   | |.--.| |   | |    |   |_  _ |   |    |
- ---``--._      |    |   |=|'--'|=|___|=|====|___|=====|___|====|
- -- . ''  ``--._| _  |  -|_|.--.|_______|_______________________|
-`--._           '--- |_  |:|'--'|:::::::|:::::::::::::::::::::::|
-_____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
-----------`--._          ''      ``--.._|:::::::::::::::::::::::|
-`--._ _________`--._'        --     .   ''-----.................|
-     `--._----------`--._.  _           -- . :''           -    ''
-          `--._ _________`--._ :'              -- . :''      -- . ''
- -- . ''       `--._ ---------`--._   -- . :''
-          :'        `--._ _________`--._:'  -- . ''      -- . ''
-  -- . ''     -- . ''    `--._----------`--._      -- . ''     -- . ''
-                              `--._ _________`--._
- -- . ''           :'              `--._ ---------`--._-- . ''    -- . ''
-          -- . ''       -- . ''         `--._ _________`--._   -- . ''
-:'                 -- . ''          -- . ''  `--._----------`--._
-'''
-
-logoTrain = '''
-########################## WELCOME TO ##########################
-##########################   PYTRAID  ##########################
-
-
-                            P  Y  T  R A
-                       ,_____  ____    I
-                       |     \_|[]|_'__D
-                       |_______|__|_|__|}
-=======================oo--oo==oo--OOO\\========================
-
-################################################################
-################# https://github.com/lindeneg ##################
-################################################################
-'''
-

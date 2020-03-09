@@ -8,8 +8,8 @@ Licence: Public Domain
 from __future__ import annotations
 from typing import List, Union, Callable
 
-from util.constants import City, DEPART, ARRIVE
-from train.train import Train
+from util.constants import City, DEPART, ARRIVE # type: ignore[import]
+from train.train import Train # type: ignore[import]
 
 
 class Route:
@@ -93,15 +93,19 @@ KEY              : {self.mID}
 
     def Status(self) -> str:
         statusStr: str
-        if self.currentCity[0] is False:
-            statusStr = "EN-ROUTE FROM"
-        else:
-            statusStr = "IN CITY"
-        return f"{statusStr} {self.currentCity[1].name.upper()}"
+        if isinstance(self.currentCity[0], bool) and isinstance(self.currentCity[1], City):
+            if self.currentCity[0] is False:
+                statusStr = "EN-ROUTE FROM"
+            else:
+                statusStr = "IN CITY"
+            return f"{statusStr} {self.currentCity[1].name.upper()}"
+        return ""
 
-    def __eq__(self, other: Route) -> bool:
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Route):
+            raise TypeError("Cannot compare Route object with non-Route object")
         return (self.departCity == other.departCity and self.arriveCity == other.arriveCity) \
-               or (self.departCity == other.arriveCity and self.arriveCity == other.departCity)
+            or (self.departCity == other.arriveCity and self.arriveCity == other.departCity)
 
     def __repr__(self) -> str:
         return f"""
