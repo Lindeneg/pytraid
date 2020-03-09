@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d33cd5b2-a86d-4937-9baf-3d76afbb4887" name="Default Changelist" comment="" />
+    <list default="true" id="d33cd5b2-a86d-4937-9baf-3d76afbb4887" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pytraid.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pytraid.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/menu.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +48,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pytraid_private" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -465,10 +471,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="160" y="16" key="DiffContextDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581835908384" />
-    <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1581280048081">
+    <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1583768705416">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581280048081" />
+    <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1583768705416" />
     <state width="1876" height="656" key="GridCell.Tab.0.bottom" timestamp="1581280026653">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -505,14 +511,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="807" y="436" key="VCS.ChangelistChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581824869329" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1581869878938">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1581870970999">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581869878937" />
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1581869482171">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581870970999" />
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1582131882685">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581869482171" />
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1582131882685" />
     <state x="741" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1581869801599">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
